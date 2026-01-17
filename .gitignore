@@ -1,9 +1,17 @@
-# ROS2 workspace
+# ROS2 colcon artifacts
 build/
 install/
 log/
 
-# Compiled objects
-*.o
-*.so
-*.a
+# CMake
+**/CMakeFiles/
+**/*.o
+**/*.so
+**/*.a
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+
+# VSCode
+.vscode/
