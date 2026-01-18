@@ -1,0 +1,33 @@
+[35m[1mConsolidate compiler generated dependencies of target dsr_hardware2[0m
+[100%] Built target dsr_hardware2
+-- Install configuration: ""
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/dsr_hardware2.xml
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/dsr_hardware2.xml
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/include/dsr_hardware2
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/include/dsr_hardware2/dsr_hardware2
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/include/dsr_hardware2/dsr_hardware2/dsr_hw_interface2.h
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/include/dsr_hardware2/dsr_hardware2/util.hpp
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/lib/libdsr_hardware2.so
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/environment/library_path.sh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/environment/library_path.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/ament_index/resource_index/package_run_dependencies/dsr_hardware2
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/ament_index/resource_index/parent_prefix_path/dsr_hardware2
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/environment/ament_prefix_path.sh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/environment/path.sh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/environment/path.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/local_setup.bash
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/local_setup.sh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/local_setup.zsh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/local_setup.dsv
+-- Installing: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/package.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/ament_index/resource_index/packages/dsr_hardware2
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/dsr_hardware2
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/ament_index/resource_index/controller_interface__pluginlib__plugin/dsr_hardware2
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/cmake/export_dsr_hardware2Export.cmake
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/cmake/export_dsr_hardware2Export-noconfig.cmake
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/cmake/ament_cmake_export_targets-extras.cmake
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/cmake/dsr_hardware2Config.cmake
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/cmake/dsr_hardware2Config-version.cmake
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/package.xml

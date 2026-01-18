@@ -1,0 +1,58 @@
+[0.026s] Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_a0912': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_moveit2/dsr_moveit_config_a0912 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_moveit_config_a0912
+[0.243s] -- The C compiler identification is GNU 11.4.0
+[0.407s] -- The CXX compiler identification is GNU 11.4.0
+[0.419s] -- Detecting C compiler ABI info
+[0.553s] -- Detecting C compiler ABI info - done
+[0.576s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.576s] -- Detecting C compile features
+[0.577s] -- Detecting C compile features - done
+[0.584s] -- Detecting CXX compiler ABI info
+[0.732s] -- Detecting CXX compiler ABI info - done
+[0.756s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.756s] -- Detecting CXX compile features
+[0.760s] -- Detecting CXX compile features - done
+[0.761s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.090s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.459s] -- Configuring done
+[1.462s] -- Generating done
+[1.468s] -- Build files have been written to: /home/rokey/cobot_ws/build/dsr_moveit_config_a0912
+[1.492s] Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_a0912' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_moveit2/dsr_moveit_config_a0912 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_moveit_config_a0912
+[1.493s] Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_a0912': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_moveit_config_a0912 -- -j8 -l8
+[1.540s] Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_a0912' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_moveit_config_a0912 -- -j8 -l8
+[1.549s] Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_a0912': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_moveit_config_a0912
+[1.560s] -- Install configuration: ""
+[1.561s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/ament_index/resource_index/package_run_dependencies/dsr_moveit_config_a0912
+[1.561s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/ament_index/resource_index/parent_prefix_path/dsr_moveit_config_a0912
+[1.561s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/environment/ament_prefix_path.sh
+[1.561s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/environment/ament_prefix_path.dsv
+[1.561s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/environment/path.sh
+[1.562s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/environment/path.dsv
+[1.562s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/local_setup.bash
+[1.562s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/local_setup.sh
+[1.562s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/local_setup.zsh
+[1.562s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/local_setup.dsv
+[1.562s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/package.dsv
+[1.564s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/ament_index/resource_index/packages/dsr_moveit_config_a0912
+[1.564s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/cmake/dsr_moveit_config_a0912Config.cmake
+[1.564s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/cmake/dsr_moveit_config_a0912Config-version.cmake
+[1.566s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/package.xml
+[1.567s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/launch
+[1.567s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/launch/moveit.rviz
+[1.567s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/launch/start.launch.py
+[1.567s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/launch/demo.launch.py
+[1.567s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config
+[1.568s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/dsr.ros2_control.xacro
+[1.568s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/pilz_cartesian_limits.yaml
+[1.568s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/ros2_controllers.yaml
+[1.568s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/pilz_industrial_motion_planner_planning.yaml
+[1.568s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/moveit_controllers.yaml
+[1.568s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/ompl_planning.yaml
+[1.568s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/kinematics.yaml
+[1.568s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/sensors_3d.yaml
+[1.569s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/initial_positions.yaml
+[1.570s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/dsr.srdf
+[1.570s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/joint_limits.yaml
+[1.570s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/chomp_planning.yaml
+[1.570s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/config/a0912.urdf.xacro
+[1.571s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_a0912/share/dsr_moveit_config_a0912/.setup_assistant
+[1.594s] Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_a0912' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_moveit_config_a0912

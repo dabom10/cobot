@@ -15,3 +15,8 @@ log/
 
 # VSCode
 .vscode/
+build/
+install/
+log/
+*.o
+*.so

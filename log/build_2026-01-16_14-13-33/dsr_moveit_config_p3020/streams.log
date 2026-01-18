@@ -1,0 +1,57 @@
+[0.054s] Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_p3020': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_moveit2/dsr_moveit_config_p3020 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_moveit_config_p3020
+[0.829s] -- The C compiler identification is GNU 11.4.0
+[0.829s] -- The CXX compiler identification is GNU 11.4.0
+[0.829s] -- Detecting C compiler ABI info
+[0.830s] -- Detecting C compiler ABI info - done
+[0.830s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.830s] -- Detecting C compile features
+[0.834s] -- Detecting C compile features - done
+[0.834s] -- Detecting CXX compiler ABI info
+[0.834s] -- Detecting CXX compiler ABI info - done
+[0.835s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.835s] -- Detecting CXX compile features
+[0.835s] -- Detecting CXX compile features - done
+[0.835s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.980s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.272s] -- Configuring done
+[1.275s] -- Generating done
+[1.277s] -- Build files have been written to: /home/rokey/cobot_ws/build/dsr_moveit_config_p3020
+[1.363s] Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_p3020' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_moveit2/dsr_moveit_config_p3020 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_moveit_config_p3020
+[1.365s] Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_p3020': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_moveit_config_p3020 -- -j8 -l8
+[1.441s] Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_p3020' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_moveit_config_p3020 -- -j8 -l8
+[1.442s] Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_p3020': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_moveit_config_p3020
+[1.460s] -- Install configuration: ""
+[1.461s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/ament_index/resource_index/package_run_dependencies/dsr_moveit_config_p3020
+[1.461s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/ament_index/resource_index/parent_prefix_path/dsr_moveit_config_p3020
+[1.462s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/environment/ament_prefix_path.sh
+[1.462s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/environment/ament_prefix_path.dsv
+[1.462s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/environment/path.sh
+[1.462s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/environment/path.dsv
+[1.462s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/local_setup.bash
+[1.463s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/local_setup.sh
+[1.463s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/local_setup.zsh
+[1.463s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/local_setup.dsv
+[1.463s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/package.dsv
+[1.463s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/ament_index/resource_index/packages/dsr_moveit_config_p3020
+[1.464s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/cmake/dsr_moveit_config_p3020Config.cmake
+[1.464s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/cmake/dsr_moveit_config_p3020Config-version.cmake
+[1.465s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/package.xml
+[1.466s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/launch
+[1.466s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/launch/moveit.rviz
+[1.466s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/launch/start.launch.py
+[1.467s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config
+[1.467s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/dsr.ros2_control.xacro
+[1.467s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/pilz_cartesian_limits.yaml
+[1.467s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/ros2_controllers.yaml
+[1.467s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/pilz_industrial_motion_planner_planning.yaml
+[1.467s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/moveit_controllers.yaml
+[1.467s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/ompl_planning.yaml
+[1.468s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/kinematics.yaml
+[1.468s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/sensors_3d.yaml
+[1.468s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/initial_positions.yaml
+[1.468s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/dsr.srdf
+[1.468s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/p3020.urdf.xacro
+[1.468s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/joint_limits.yaml
+[1.468s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/config/chomp_planning.yaml
+[1.468s] -- Installing: /home/rokey/cobot_ws/install/dsr_moveit_config_p3020/share/dsr_moveit_config_p3020/.setup_assistant
+[1.523s] Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_p3020' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_moveit_config_p3020

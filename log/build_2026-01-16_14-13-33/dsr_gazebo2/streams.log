@@ -1,0 +1,189 @@
+[0.350s] Invoking command in '/home/rokey/cobot_ws/build/dsr_gazebo2': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_gazebo2 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_gazebo2
+[0.410s] -- The C compiler identification is GNU 11.4.0
+[0.469s] -- The CXX compiler identification is GNU 11.4.0
+[0.479s] -- Detecting C compiler ABI info
+[0.553s] -- Detecting C compiler ABI info - done
+[0.568s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.568s] -- Detecting C compile features
+[0.569s] -- Detecting C compile features - done
+[0.573s] -- Detecting CXX compiler ABI info
+[0.666s] -- Detecting CXX compiler ABI info - done
+[0.674s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.674s] -- Detecting CXX compile features
+[0.675s] -- Detecting CXX compile features - done
+[0.677s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.851s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.938s] -- Found gazebo_ros_pkgs: 3.9.0 (/opt/ros/humble/share/gazebo_ros_pkgs/cmake)
+[0.939s] -- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.971s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.983s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.001s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.019s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.036s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.083s] -- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[1.112s] -- Found rclcpp: 16.0.17 (/opt/ros/humble/share/rclcpp/cmake)
+[1.150s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.152s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.231s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[1.254s] -- Found FastRTPS: /opt/ros/humble/include  
+[1.291s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.300s] -- Looking for pthread.h
+[1.364s] -- Looking for pthread.h - found
+[1.364s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.425s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.425s] -- Found Threads: TRUE  
+[1.464s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.528s] -- Found tf2: 0.25.18 (/opt/ros/humble/share/tf2/cmake)
+[1.546s] -- Found dsr_description2: 1.1.0 (/home/rokey/cobot_ws/install/dsr_description2/share/dsr_description2/cmake)
+[1.615s] -- Configuring done
+[1.619s] -- Generating done
+[1.621s] -- Build files have been written to: /home/rokey/cobot_ws/build/dsr_gazebo2
+[1.628s] Invoked command in '/home/rokey/cobot_ws/build/dsr_gazebo2' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_gazebo2 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_gazebo2
+[1.630s] Invoking command in '/home/rokey/cobot_ws/build/dsr_gazebo2': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_gazebo2 -- -j8 -l8
+[1.668s] Invoked command in '/home/rokey/cobot_ws/build/dsr_gazebo2' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_gazebo2 -- -j8 -l8
+[1.669s] Invoking command in '/home/rokey/cobot_ws/build/dsr_gazebo2': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_gazebo2
+[1.674s] -- Install configuration: ""
+[1.675s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/launch
+[1.675s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/launch/dsr_gazebo.launch.py
+[1.675s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/launch/dsr_spawn_on_gazebo.launch.py
+[1.675s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model
+[1.675s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912
+[1.675s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes
+[1.675s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_2_2.dae
+[1.676s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_0_0.dae
+[1.677s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_3_1.dae
+[1.679s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_2_1.dae
+[1.681s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_5_1.dae
+[1.683s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_1_1.dae
+[1.684s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_4_1.dae
+[1.686s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_2_0.dae
+[1.688s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_1_2.dae
+[1.689s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_4_0.dae
+[1.690s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_6_0.dae
+[1.692s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_3_0.dae
+[1.693s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_1_0.dae
+[1.694s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/meshes/A0912_5_0.dae
+[1.695s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/model.config
+[1.695s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0912/a0912.sdf
+[1.696s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617
+[1.696s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes
+[1.696s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_0_0.dae
+[1.697s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_1_0.dae
+[1.698s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_4_0.dae
+[1.698s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_6_0.dae
+[1.699s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_3_0.dae
+[1.700s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_5_0.dae
+[1.701s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_4_1.dae
+[1.701s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_2_2.dae
+[1.702s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_2_1.dae
+[1.705s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/meshes/MF0617_2_0.dae
+[1.706s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/model.config
+[1.706s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0617/m0617.sdf
+[1.706s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017
+[1.706s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes
+[1.706s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_4_0.dae
+[1.707s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_0_0.dae
+[1.708s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_6_0.dae
+[1.709s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_1_0.dae
+[1.710s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_5_0.dae
+[1.712s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_2_1.dae
+[1.714s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_2_0.dae
+[1.716s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_2_2.dae
+[1.717s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_4_1.dae
+[1.718s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/meshes/H2017_3_0.dae
+[1.719s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/model.config
+[1.720s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2017/h2017.sdf
+[1.720s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609
+[1.720s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/m0609.sdf
+[1.720s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes
+[1.720s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_1_0.dae
+[1.721s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_0_0.dae
+[1.723s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_2_0.dae
+[1.723s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_2_1.dae
+[1.726s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_4_0.dae
+[1.727s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_5_0.dae
+[1.728s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_6_0.dae
+[1.728s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_4_1.dae
+[1.729s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_3_0.dae
+[1.729s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/meshes/MF0609_2_2.dae
+[1.730s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m0609/model.config
+[1.730s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509
+[1.731s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes
+[1.731s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_4_1.dae
+[1.731s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_4_0.dae
+[1.732s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_2_1.dae
+[1.735s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_2_2.dae
+[1.736s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_2_0.dae
+[1.736s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_6_0.dae
+[1.737s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_0_0.dae
+[1.738s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_3_0.dae
+[1.739s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_5_0.dae
+[1.740s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/meshes/MF1509_1_0.dae
+[1.741s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/model.config
+[1.741s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1509/m1509.sdf
+[1.741s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013
+[1.741s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes
+[1.741s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_6_0.dae
+[1.742s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_2_2.dae
+[1.744s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_1_0.dae
+[1.745s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_3_0.dae
+[1.746s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_2_1.dae
+[1.750s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_4_0.dae
+[1.751s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_0_0.dae
+[1.753s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_2_0.dae
+[1.754s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_4_1.dae
+[1.755s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/meshes/MF1013_5_0.dae
+[1.756s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/m1013.sdf
+[1.757s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/m1013/model.config
+[1.757s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515
+[1.757s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes
+[1.757s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_4_1.dae
+[1.758s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_2_0.dae
+[1.759s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_0_0.dae
+[1.760s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_2_1.dae
+[1.763s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_3_0.dae
+[1.764s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_5_0.dae
+[1.766s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_6_0.dae
+[1.766s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_4_0.dae
+[1.768s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_1_0.dae
+[1.769s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/meshes/H2515_2_2.dae
+[1.770s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/model.config
+[1.771s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/h2515/h2515.sdf
+[1.771s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509
+[1.771s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes
+[1.771s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_3_1.dae
+[1.772s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_3_0.dae
+[1.772s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_4_1.dae
+[1.773s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_5_1.dae
+[1.775s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_4_0.dae
+[1.776s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_2_2.dae
+[1.777s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_1_2.dae
+[1.778s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_5_0.dae
+[1.778s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_1_1.dae
+[1.779s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_6_0.dae
+[1.780s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_2_1.dae
+[1.782s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_1_0.dae
+[1.783s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_0_0.dae
+[1.784s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/meshes/A0509_2_0.dae
+[1.786s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/model.config
+[1.786s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/model/a0509/a0509.sdf
+[1.786s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/worlds
+[1.786s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/worlds/empty_world.world
+[1.787s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/worlds/empty_world.model
+[1.787s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/ament_index/resource_index/package_run_dependencies/dsr_gazebo2
+[1.787s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/ament_index/resource_index/parent_prefix_path/dsr_gazebo2
+[1.787s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/environment/ament_prefix_path.sh
+[1.787s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/environment/ament_prefix_path.dsv
+[1.787s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/environment/path.sh
+[1.787s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/environment/path.dsv
+[1.787s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/local_setup.bash
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/local_setup.sh
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/local_setup.zsh
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/local_setup.dsv
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/package.dsv
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/ament_index/resource_index/packages/dsr_gazebo2
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/cmake/ament_cmake_export_dependencies-extras.cmake
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/cmake/dsr_gazebo2Config.cmake
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/cmake/dsr_gazebo2Config-version.cmake
+[1.788s] -- Installing: /home/rokey/cobot_ws/install/dsr_gazebo2/share/dsr_gazebo2/package.xml
+[1.791s] Invoked command in '/home/rokey/cobot_ws/build/dsr_gazebo2' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_description2:/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_gazebo2

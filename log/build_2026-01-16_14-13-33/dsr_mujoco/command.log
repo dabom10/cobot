@@ -1,0 +1,6 @@
+Invoking command in '/home/rokey/cobot_ws/build/dsr_mujoco': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_mujoco -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_mujoco
+Invoked command in '/home/rokey/cobot_ws/build/dsr_mujoco' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_mujoco -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_mujoco
+Invoking command in '/home/rokey/cobot_ws/build/dsr_mujoco': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_mujoco -- -j8 -l8
+Invoked command in '/home/rokey/cobot_ws/build/dsr_mujoco' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_mujoco -- -j8 -l8
+Invoking command in '/home/rokey/cobot_ws/build/dsr_mujoco': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_mujoco
+Invoked command in '/home/rokey/cobot_ws/build/dsr_mujoco' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_mujoco

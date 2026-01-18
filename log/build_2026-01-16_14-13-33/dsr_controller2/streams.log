@@ -1,0 +1,132 @@
+[0.009s] Invoking command in '/home/rokey/cobot_ws/build/dsr_controller2': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_hardware2/lib:/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_controller2
+[0.085s] -- The CXX compiler identification is GNU 11.4.0
+[0.092s] -- Detecting CXX compiler ABI info
+[0.164s] -- Detecting CXX compiler ABI info - done
+[0.172s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.172s] -- Detecting CXX compile features
+[0.172s] -- Detecting CXX compile features - done
+[0.174s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.351s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.452s] -- Found forward_command_controller: 2.52.0 (/opt/ros/humble/share/forward_command_controller/cmake)
+[0.501s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.506s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.515s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.527s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.545s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.594s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.596s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.685s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.712s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.753s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.761s] -- Looking for C++ include pthread.h
+[0.905s] -- Looking for C++ include pthread.h - found
+[0.905s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.098s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.100s] -- Found Threads: TRUE  
+[1.377s] -- Found dsr_msgs2: 1.1.0 (/home/rokey/cobot_ws/install/dsr_msgs2/share/dsr_msgs2/cmake)
+[1.392s] -- Found moveit_msgs: 2.2.1 (/opt/ros/humble/share/moveit_msgs/cmake)
+[1.479s] -- Found dsr_hardware2: 0.0.0 (/home/rokey/cobot_ws/install/dsr_hardware2/share/dsr_hardware2/cmake)
+[1.515s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[1.516s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[1.517s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[1.531s] -- Found rclcpp_components: 16.0.17 (/opt/ros/humble/share/rclcpp_components/cmake)
+[1.554s] [0mDRCF_VERSION:2[0m
+[1.629s] -- Configuring done
+[1.652s] -- Generating done
+[1.660s] -- Build files have been written to: /home/rokey/cobot_ws/build/dsr_controller2
+[1.672s] Invoked command in '/home/rokey/cobot_ws/build/dsr_controller2' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_hardware2/lib:/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_controller2
+[1.674s] Invoking command in '/home/rokey/cobot_ws/build/dsr_controller2': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_hardware2/lib:/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_controller2 -- -j8 -l8
+[1.719s] [ 50%] [32mBuilding CXX object CMakeFiles/dsr_controller2.dir/src/dsr_controller2.cpp.o[0m
+[1.719s] [ 50%] [32mBuilding CXX object CMakeFiles/dsr_joint_trajectory.dir/src/dsr_joint_trajectory.cpp.o[0m
+[4.482s] In file included from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/include/dsr_controller2/dsr_controller2.hpp:28[m[K,
+[4.482s]                  from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:10[m[K:
+[4.482s] [01m[K/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_buffer.h:22:100:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: This header include is deprecated. Please update your code to use 'realtime_buffer.hpp' header.[m[K’
+[4.482s]    22 | lease update your code to use 'realtime_buffer.hpp' header."[01;36m[K)[m[K  //NOLINT
+[4.483s]       |                                                             [01;36m[K^[m[K
+[4.483s] 
+[4.576s] In file included from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/include/dsr_controller2/dsr_joint_trajectory.hpp:30[m[K,
+[4.576s]                  from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_joint_trajectory.cpp:10[m[K:
+[4.576s] [01m[K/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_buffer.h:22:100:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: This header include is deprecated. Please update your code to use 'realtime_buffer.hpp' header.[m[K’
+[4.576s]    22 |   "This header include is deprecated. Please update your code to use 'realtime_buffer.hpp' header."[01;36m[K)[m[K  //NOLINT
+[4.576s]       |                                                                                                    [01;36m[K^[m[K
+[12.044s] [ 75%] [32m[1mLinking CXX shared library libdsr_joint_trajectory.so[0m
+[12.901s] [ 75%] Built target dsr_joint_trajectory
+[13.083s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:[m[K In member function ‘[01m[Kvirtual controller_interface::CallbackReturn dsr_controller2::RobotController::on_init()[m[K’:
+[13.083s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:81:10:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Krt_ms[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[13.083s]    81 |     auto [01;35m[Krt_ms[m[K        = auto_declare<int>(PARAM_RT_TIMER_MS, 10);
+[13.083s]       |          [01;35m[K^~~~~[m[K
+[13.136s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:[m[K In static member function ‘[01m[Kstatic bool dsr_controller2::RobotController::extract_field(LPRT_OUTPUT_DATA_LIST, const string&, std::vector<float>&)[m[K’:
+[13.136s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:169:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kcopy_arr_d[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+[13.136s]   169 |     auto [01;35m[Kcopy_arr_d[m[K = [&](const double* src, size_t n) {
+[13.136s]       |          [01;35m[K^~~~~~~~~~[m[K
+[13.136s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:175:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kcopy_arr_i32[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+[13.136s]   175 |     auto [01;35m[Kcopy_arr_i32[m[K = [&](const int32_t* src, size_t n) {
+[13.136s]       |          [01;35m[K^~~~~~~~~~~~[m[K
+[13.136s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:215:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kcopy_mat6x6_d[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+[13.136s]   215 |     auto [01;35m[Kcopy_mat6x6_d[m[K = [&](const double m[6][6]) {
+[13.136s]       |          [01;35m[K^~~~~~~~~~~~~[m[K
+[13.357s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:[m[K In lambda function:
+[13.357s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:564:15:[m[K [01;35m[Kwarning: [m[KISO C++ forbids variable length array ‘[01m[Kposb[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wvla-Wvla]8;;[m[K]
+[13.357s]   564 |     MOVE_POSB [01;35m[Kposb[m[K[req->pos_cnt];
+[13.358s]       |               [01;35m[K^~~~[m[K
+[15.184s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:[m[K In member function ‘[01m[Kvirtual controller_interface::CallbackReturn dsr_controller2::RobotController::on_activate(const rclcpp_lifecycle::State&)[m[K’:
+[15.184s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:2459:9:[m[K [01;35m[Kwarning: [m[K‘[01m[Kvoid* memset(void*, int, size_t)[m[K’ clearing an object of type ‘[01m[Kstruct DR_STATE[m[K’ with no trivial copy-assignment; use assignment or value-initialization instead [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wclass-memaccess-Wclass-memaccess]8;;[m[K]
+[15.184s]  2459 |   [01;35m[Kmemset(&g_stDrState, 0x00, sizeof(DR_STATE))[m[K;
+[15.184s]       |   [01;35m[K~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[15.184s] In file included from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:10[m[K:
+[15.184s] [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/include/dsr_controller2/dsr_controller2.hpp:391:16:[m[K [01;36m[Knote: [m[K‘[01m[Kstruct DR_STATE[m[K’ declared here
+[15.184s]   391 | typedef struct [01;36m[K{[m[K
+[15.184s]       |                [01;36m[K^[m[K
+[121.554s] [100%] [32m[1mLinking CXX shared library libdsr_controller2.so[0m
+[133.713s] [100%] Built target dsr_controller2
+[133.774s] Invoked command in '/home/rokey/cobot_ws/build/dsr_controller2' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_hardware2/lib:/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_controller2 -- -j8 -l8
+[133.826s] Invoking command in '/home/rokey/cobot_ws/build/dsr_controller2': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_hardware2/lib:/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_controller2
+[133.844s] -- Install configuration: ""
+[133.846s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/dsr_controller2_plugins.xml
+[133.846s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/dsr_joint_trajectory_plugin.xml
+[133.847s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/include/dsr_controller2
+[133.848s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/include/dsr_controller2/dsr_controller2
+[133.848s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/include/dsr_controller2/dsr_controller2/dsr_joint_trajectory.hpp
+[133.848s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/include/dsr_controller2/dsr_controller2/dsr_controller2.hpp
+[133.849s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/include/dsr_controller2/dsr_controller2/visibility_control.h
+[133.850s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/config
+[133.850s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/config/dsr_controller2_gz.yaml
+[133.851s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/config/default.yaml
+[133.851s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/config/dsr_controller2_p3020.yaml
+[133.851s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/config/dsr_controller2_gz_p3020.yaml
+[133.852s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/config/dsr_controller2_ex.yaml
+[133.852s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/config/console.conf
+[133.853s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/config/dsr_controller2.yaml
+[133.853s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/launch
+[133.854s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/launch/dsr_controller2.launch.py
+[133.854s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/launch/dsr_control2.launch.py
+[133.855s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/launch/dsr_moveit2.launch.py
+[133.855s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/lib/libdsr_controller2.so
+[133.939s] -- Set runtime path of "/home/rokey/cobot_ws/install/dsr_controller2/lib/libdsr_controller2.so" to ""
+[133.939s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/lib/libdsr_joint_trajectory.so
+[133.947s] -- Set runtime path of "/home/rokey/cobot_ws/install/dsr_controller2/lib/libdsr_joint_trajectory.so" to ""
+[133.947s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/environment/library_path.sh
+[133.947s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/environment/library_path.dsv
+[133.947s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/ament_index/resource_index/package_run_dependencies/dsr_controller2
+[133.947s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/ament_index/resource_index/parent_prefix_path/dsr_controller2
+[133.948s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/environment/ament_prefix_path.sh
+[133.948s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/environment/ament_prefix_path.dsv
+[133.948s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/environment/path.sh
+[133.948s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/environment/path.dsv
+[133.949s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/local_setup.bash
+[133.949s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/local_setup.sh
+[133.949s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/local_setup.zsh
+[133.949s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/local_setup.dsv
+[133.949s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/package.dsv
+[133.950s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/ament_index/resource_index/packages/dsr_controller2
+[133.950s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/ament_index/resource_index/controller_interface__pluginlib__plugin/dsr_controller2
+[133.950s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/cmake/export_dsr_controller2Export.cmake
+[133.950s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/cmake/export_dsr_controller2Export-noconfig.cmake
+[133.951s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/cmake/export_dsr_joint_trajectoryExport.cmake
+[133.951s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/cmake/export_dsr_joint_trajectoryExport-noconfig.cmake
+[133.951s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/cmake/ament_cmake_export_targets-extras.cmake
+[133.951s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/cmake/ament_cmake_export_dependencies-extras.cmake
+[133.951s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/cmake/dsr_controller2Config.cmake
+[133.952s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/cmake/dsr_controller2Config-version.cmake
+[133.952s] -- Installing: /home/rokey/cobot_ws/install/dsr_controller2/share/dsr_controller2/package.xml
+[133.955s] Invoked command in '/home/rokey/cobot_ws/build/dsr_controller2' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_hardware2:/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_hardware2/lib:/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_controller2

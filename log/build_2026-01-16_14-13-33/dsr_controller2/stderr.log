@@ -1,0 +1,38 @@
+[0mDRCF_VERSION:2[0m
+In file included from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/include/dsr_controller2/dsr_controller2.hpp:28[m[K,
+                 from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:10[m[K:
+[01m[K/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_buffer.h:22:100:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: This header include is deprecated. Please update your code to use 'realtime_buffer.hpp' header.[m[K’
+   22 | lease update your code to use 'realtime_buffer.hpp' header."[01;36m[K)[m[K  //NOLINT
+      |                                                             [01;36m[K^[m[K
+
+In file included from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/include/dsr_controller2/dsr_joint_trajectory.hpp:30[m[K,
+                 from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_joint_trajectory.cpp:10[m[K:
+[01m[K/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_buffer.h:22:100:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: This header include is deprecated. Please update your code to use 'realtime_buffer.hpp' header.[m[K’
+   22 |   "This header include is deprecated. Please update your code to use 'realtime_buffer.hpp' header."[01;36m[K)[m[K  //NOLINT
+      |                                                                                                    [01;36m[K^[m[K
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:[m[K In member function ‘[01m[Kvirtual controller_interface::CallbackReturn dsr_controller2::RobotController::on_init()[m[K’:
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:81:10:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Krt_ms[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   81 |     auto [01;35m[Krt_ms[m[K        = auto_declare<int>(PARAM_RT_TIMER_MS, 10);
+      |          [01;35m[K^~~~~[m[K
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:[m[K In static member function ‘[01m[Kstatic bool dsr_controller2::RobotController::extract_field(LPRT_OUTPUT_DATA_LIST, const string&, std::vector<float>&)[m[K’:
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:169:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kcopy_arr_d[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  169 |     auto [01;35m[Kcopy_arr_d[m[K = [&](const double* src, size_t n) {
+      |          [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:175:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kcopy_arr_i32[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  175 |     auto [01;35m[Kcopy_arr_i32[m[K = [&](const int32_t* src, size_t n) {
+      |          [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:215:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kcopy_mat6x6_d[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  215 |     auto [01;35m[Kcopy_mat6x6_d[m[K = [&](const double m[6][6]) {
+      |          [01;35m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:[m[K In lambda function:
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:564:15:[m[K [01;35m[Kwarning: [m[KISO C++ forbids variable length array ‘[01m[Kposb[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wvla-Wvla]8;;[m[K]
+  564 |     MOVE_POSB [01;35m[Kposb[m[K[req->pos_cnt];
+      |               [01;35m[K^~~~[m[K
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:[m[K In member function ‘[01m[Kvirtual controller_interface::CallbackReturn dsr_controller2::RobotController::on_activate(const rclcpp_lifecycle::State&)[m[K’:
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:2459:9:[m[K [01;35m[Kwarning: [m[K‘[01m[Kvoid* memset(void*, int, size_t)[m[K’ clearing an object of type ‘[01m[Kstruct DR_STATE[m[K’ with no trivial copy-assignment; use assignment or value-initialization instead [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wclass-memaccess-Wclass-memaccess]8;;[m[K]
+ 2459 |   [01;35m[Kmemset(&g_stDrState, 0x00, sizeof(DR_STATE))[m[K;
+      |   [01;35m[K~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/src/dsr_controller2.cpp:10[m[K:
+[01m[K/home/rokey/cobot_ws/src/doosan-robot2/dsr_controller2/include/dsr_controller2/dsr_controller2.hpp:391:16:[m[K [01;36m[Knote: [m[K‘[01m[Kstruct DR_STATE[m[K’ declared here
+  391 | typedef struct [01;36m[K{[m[K
+      |                [01;36m[K^[m[K

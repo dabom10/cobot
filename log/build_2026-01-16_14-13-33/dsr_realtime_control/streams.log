@@ -1,0 +1,70 @@
+[0.551s] Invoking command in '/home/rokey/cobot_ws/build/dsr_realtime_control': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_example2/dsr_realtime_control -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_realtime_control
+[0.661s] -- The C compiler identification is GNU 11.4.0
+[0.776s] -- The CXX compiler identification is GNU 11.4.0
+[0.787s] -- Detecting C compiler ABI info
+[0.874s] -- Detecting C compiler ABI info - done
+[0.889s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.889s] -- Detecting C compile features
+[0.890s] -- Detecting C compile features - done
+[0.895s] -- Detecting CXX compiler ABI info
+[1.010s] -- Detecting CXX compiler ABI info - done
+[1.029s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.029s] -- Detecting CXX compile features
+[1.030s] -- Detecting CXX compile features - done
+[1.034s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.274s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[1.418s] -- Found rclcpp: 16.0.17 (/opt/ros/humble/share/rclcpp/cmake)
+[1.484s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.492s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.505s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.524s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.547s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.605s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.608s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.711s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[1.745s] -- Found FastRTPS: /opt/ros/humble/include  
+[1.802s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.812s] -- Looking for pthread.h
+[1.891s] -- Looking for pthread.h - found
+[1.891s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.977s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.978s] -- Found Threads: TRUE  
+[2.045s] -- Found example_interfaces: 0.9.3 (/opt/ros/humble/share/example_interfaces/cmake)
+[2.104s] -- Found dsr_msgs2: 1.1.0 (/home/rokey/cobot_ws/install/dsr_msgs2/share/dsr_msgs2/cmake)
+[2.129s] -- Found dsr_common2: 1.1.0 (/home/rokey/cobot_ws/install/dsr_common2/share/dsr_common2/cmake)
+[2.207s] -- Configuring done
+[2.217s] -- Generating done
+[2.221s] -- Build files have been written to: /home/rokey/cobot_ws/build/dsr_realtime_control
+[2.231s] Invoked command in '/home/rokey/cobot_ws/build/dsr_realtime_control' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_example2/dsr_realtime_control -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_realtime_control
+[2.233s] Invoking command in '/home/rokey/cobot_ws/build/dsr_realtime_control': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_realtime_control -- -j8 -l8
+[2.280s] [ 50%] [32mBuilding CXX object CMakeFiles/dsr_realtime_control.dir/src/realtime_control.cpp.o[0m
+[10.576s] [100%] [32m[1mLinking CXX executable dsr_realtime_control[0m
+[11.095s] [100%] Built target dsr_realtime_control
+[11.104s] Invoked command in '/home/rokey/cobot_ws/build/dsr_realtime_control' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_realtime_control -- -j8 -l8
+[11.106s] Invoking command in '/home/rokey/cobot_ws/build/dsr_realtime_control': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_realtime_control
+[11.112s] -- Install configuration: ""
+[11.112s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/lib/dsr_realtime_control/dsr_realtime_control
+[11.114s] -- Set runtime path of "/home/rokey/cobot_ws/install/dsr_realtime_control/lib/dsr_realtime_control/dsr_realtime_control" to ""
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/include/dsr_realtime_control
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/include/dsr_realtime_control/dsr_realtime_control
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/include/dsr_realtime_control/dsr_realtime_control/realtime_control.hpp
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/include/dsr_realtime_control/dsr_realtime_control/burn_cpu_cycles.hpp
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/include/dsr_realtime_control/dsr_realtime_control/command_line_options.hpp
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/include/dsr_realtime_control/dsr_realtime_control/rusage_utils.hpp
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/include/dsr_realtime_control/dsr_realtime_control/sched_utils.hpp
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/ament_index/resource_index/package_run_dependencies/dsr_realtime_control
+[11.115s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/ament_index/resource_index/parent_prefix_path/dsr_realtime_control
+[11.116s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/environment/ament_prefix_path.sh
+[11.116s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/environment/ament_prefix_path.dsv
+[11.116s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/environment/path.sh
+[11.116s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/environment/path.dsv
+[11.116s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/local_setup.bash
+[11.116s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/local_setup.sh
+[11.116s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/local_setup.zsh
+[11.117s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/local_setup.dsv
+[11.117s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/package.dsv
+[11.117s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/ament_index/resource_index/packages/dsr_realtime_control
+[11.117s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/cmake/dsr_realtime_controlConfig.cmake
+[11.117s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/cmake/dsr_realtime_controlConfig-version.cmake
+[11.117s] -- Installing: /home/rokey/cobot_ws/install/dsr_realtime_control/share/dsr_realtime_control/package.xml
+[11.119s] Invoked command in '/home/rokey/cobot_ws/build/dsr_realtime_control' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:/home/rokey/cobot_ws/install/dsr_common2:/opt/ros/humble LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:/home/rokey/cobot_ws/install/dsr_common2/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_realtime_control

@@ -1,0 +1,63 @@
+[1.298s] Invoking command in '/home/rokey/cobot_ws/src/doosan-robot2/dsr_bringup2': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2 LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/build/dsr_bringup2/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages:/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/dsr_bringup2 build --build-base /home/rokey/cobot_ws/build/dsr_bringup2/build install --record /home/rokey/cobot_ws/build/dsr_bringup2/install.log --single-version-externally-managed install_data
+[1.671s] running egg_info
+[1.672s] creating ../../../build/dsr_bringup2/dsr_bringup2.egg-info
+[1.672s] writing ../../../build/dsr_bringup2/dsr_bringup2.egg-info/PKG-INFO
+[1.672s] writing dependency_links to ../../../build/dsr_bringup2/dsr_bringup2.egg-info/dependency_links.txt
+[1.673s] writing entry points to ../../../build/dsr_bringup2/dsr_bringup2.egg-info/entry_points.txt
+[1.673s] writing requirements to ../../../build/dsr_bringup2/dsr_bringup2.egg-info/requires.txt
+[1.673s] writing top-level names to ../../../build/dsr_bringup2/dsr_bringup2.egg-info/top_level.txt
+[1.673s] writing manifest file '../../../build/dsr_bringup2/dsr_bringup2.egg-info/SOURCES.txt'
+[1.676s] reading manifest file '../../../build/dsr_bringup2/dsr_bringup2.egg-info/SOURCES.txt'
+[1.677s] writing manifest file '../../../build/dsr_bringup2/dsr_bringup2.egg-info/SOURCES.txt'
+[1.677s] running build
+[1.677s] running build_py
+[1.677s] creating /home/rokey/cobot_ws/build/dsr_bringup2/build
+[1.677s] creating /home/rokey/cobot_ws/build/dsr_bringup2/build/lib
+[1.677s] creating /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2
+[1.678s] copying dsr_bringup2/gazebo_connection_pos.py -> /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2
+[1.678s] copying dsr_bringup2/moveit_connection.py -> /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2
+[1.678s] copying dsr_bringup2/dsr_mujoco_bridge.py -> /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2
+[1.678s] copying dsr_bringup2/utils.py -> /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2
+[1.679s] copying dsr_bringup2/__init__.py -> /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2
+[1.679s] copying dsr_bringup2/run_emulator.py -> /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2
+[1.679s] copying dsr_bringup2/gazebo_connection.py -> /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2
+[1.679s] running install
+[1.680s] running install_lib
+[1.681s] creating /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2
+[1.681s] copying /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2/gazebo_connection_pos.py -> /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2
+[1.681s] copying /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2/moveit_connection.py -> /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2
+[1.681s] copying /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2/dsr_mujoco_bridge.py -> /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2
+[1.682s] copying /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2/utils.py -> /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2
+[1.682s] copying /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2/__init__.py -> /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2
+[1.682s] copying /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2/run_emulator.py -> /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2
+[1.682s] copying /home/rokey/cobot_ws/build/dsr_bringup2/build/lib/dsr_bringup2/gazebo_connection.py -> /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2
+[1.682s] byte-compiling /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2/gazebo_connection_pos.py to gazebo_connection_pos.cpython-310.pyc
+[1.683s] byte-compiling /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2/moveit_connection.py to moveit_connection.cpython-310.pyc
+[1.684s] byte-compiling /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2/dsr_mujoco_bridge.py to dsr_mujoco_bridge.cpython-310.pyc
+[1.685s] byte-compiling /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2/utils.py to utils.cpython-310.pyc
+[1.686s] byte-compiling /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2/__init__.py to __init__.cpython-310.pyc
+[1.686s] byte-compiling /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2/run_emulator.py to run_emulator.cpython-310.pyc
+[1.687s] byte-compiling /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2/gazebo_connection.py to gazebo_connection.cpython-310.pyc
+[1.688s] running install_data
+[1.689s] creating /home/rokey/cobot_ws/install/dsr_bringup2/share/ament_index
+[1.689s] creating /home/rokey/cobot_ws/install/dsr_bringup2/share/ament_index/resource_index
+[1.689s] creating /home/rokey/cobot_ws/install/dsr_bringup2/share/ament_index/resource_index/packages
+[1.689s] copying resource/dsr_bringup2 -> /home/rokey/cobot_ws/install/dsr_bringup2/share/ament_index/resource_index/packages
+[1.689s] copying package.xml -> /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2
+[1.689s] creating /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2/launch
+[1.689s] copying launch/dsr_bringup2_mujoco.launch.py -> /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2/launch
+[1.690s] copying launch/dsr_bringup2_moveit.launch.py -> /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2/launch
+[1.690s] copying launch/dsr_bringup2_spawn_on_gazebo.launch.py -> /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2/launch
+[1.690s] copying launch/dsr_bringup2_rviz.launch.py -> /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2/launch
+[1.690s] copying launch/dsr_bringup2_gazebo.launch.py -> /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2/launch
+[1.690s] creating /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2/rviz
+[1.690s] copying rviz/default.rviz -> /home/rokey/cobot_ws/install/dsr_bringup2/share/dsr_bringup2/rviz
+[1.691s] running install_egg_info
+[1.694s] Copying ../../../build/dsr_bringup2/dsr_bringup2.egg-info to /home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages/dsr_bringup2-0.1.2-py3.10.egg-info
+[1.695s] running install_scripts
+[1.721s] Installing gazebo_connection script to /home/rokey/cobot_ws/install/dsr_bringup2/lib/dsr_bringup2
+[1.722s] Installing moveit_connection script to /home/rokey/cobot_ws/install/dsr_bringup2/lib/dsr_bringup2
+[1.722s] Installing mujoco_bridge script to /home/rokey/cobot_ws/install/dsr_bringup2/lib/dsr_bringup2
+[1.722s] Installing run_emulator script to /home/rokey/cobot_ws/install/dsr_bringup2/lib/dsr_bringup2
+[1.722s] writing list of installed files to '/home/rokey/cobot_ws/build/dsr_bringup2/install.log'
+[1.757s] Invoked command in '/home/rokey/cobot_ws/src/doosan-robot2/dsr_bringup2' returned '0': AMENT_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/rokey/cobot_ws/install/dsr_msgs2 LD_LIBRARY_PATH=/home/rokey/cobot_ws/install/dsr_msgs2/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/rokey/cobot_ws/build/dsr_bringup2/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rokey/cobot_ws/install/dsr_bringup2/lib/python3.10/site-packages:/home/rokey/cobot_ws/install/dsr_msgs2/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/dsr_bringup2 build --build-base /home/rokey/cobot_ws/build/dsr_bringup2/build install --record /home/rokey/cobot_ws/build/dsr_bringup2/install.log --single-version-externally-managed install_data

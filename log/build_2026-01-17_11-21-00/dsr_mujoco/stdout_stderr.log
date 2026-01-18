@@ -1,0 +1,43 @@
+Built target ament_cmake_python_copy_dsr_mujoco
+running egg_info
+writing dsr_mujoco.egg-info/PKG-INFO
+writing dependency_links to dsr_mujoco.egg-info/dependency_links.txt
+writing top-level names to dsr_mujoco.egg-info/top_level.txt
+reading manifest file 'dsr_mujoco.egg-info/SOURCES.txt'
+writing manifest file 'dsr_mujoco.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_dsr_mujoco_egg
+-- Install configuration: ""
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/environment/pythonpath.sh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/environment/pythonpath.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco-0.1.0-py3.10.egg-info
+-- Installing: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco/dsr_build_scene.py
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco/dsr_merge_gripper.py
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco/__init__.py
+Listing '/home/rokey/cobot_ws/install/dsr_mujoco/local/lib/python3.10/dist-packages/dsr_mujoco'...
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco//launch
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco//launch/dsr_mujoco.launch.py
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco//launch/dsr_mujoco_default.launch.py
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco//config
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco//config/2f85_controller.yaml
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco//config/dsr_mujoco_controller_with_2f85.yaml
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco//config/dsr_mujoco_controller.yaml
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/ament_index/resource_index/package_run_dependencies/dsr_mujoco
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/ament_index/resource_index/parent_prefix_path/dsr_mujoco
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/environment/ament_prefix_path.sh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/environment/path.sh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/environment/path.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/local_setup.bash
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/local_setup.sh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/local_setup.zsh
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/local_setup.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/package.dsv
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/ament_index/resource_index/packages/dsr_mujoco
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/cmake/dsr_mujocoConfig.cmake
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/cmake/dsr_mujocoConfig-version.cmake
+-- Up-to-date: /home/rokey/cobot_ws/install/dsr_mujoco/share/dsr_mujoco/package.xml
