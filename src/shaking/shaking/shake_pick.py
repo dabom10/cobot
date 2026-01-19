@@ -1,7 +1,8 @@
+# from install.dsr_common2.lib.dsr_common2.imp.DR_common2 import posx
 import rclpy
 import DR_init
-
 def main(args=None):
+
     rclpy.init(args=args)
 
     ROBOT_ID = "dsr01"
@@ -15,9 +16,10 @@ def main(args=None):
     DR_init.__dsr__model = ROBOT_MODEL
 
     from DSR_ROBOT2 import (
+        posx,
         movej, movel, move_periodic,
         set_tool, set_tcp, set_digital_output,
-        wait, DR_BASE, DR_TOOL,
+        wait, DR_BASE, DR_TOOL, DR_MV_MOD_REL,
         ON, OFF
     )
 
@@ -40,10 +42,11 @@ def main(args=None):
         set_tool("Tool Weight")
         set_tcp("GripperDA_v1")
 
-        VELOCITY = 300
-        ACC = 300
+        VELOCITY = 500
+        ACC = 500
 
-        POS_PICK  = [332.46, 8.53, 84.44, 175.74, 179.82, 175.36]
+        # POS_PICK  = [332.46, 8.53, 84.44, 175.74, 179.82, 175.36]
+        POS_PICK = [322.7, 8.10, 119.41, 19.83, -179.47, 19.28]
         POS_PLACE = [252.68, -365.13, 199.45, 89.47, 165.36, 94.89]
 
         SAFE_Z_OFFSET = 500
@@ -110,7 +113,9 @@ def main(args=None):
         # ===============================
         # Step 3. Place
         # ===============================
-        print("3. 목적지 이동 및 놓기")
+        print("3. 목적지 이동 및 물체 놓기 시작")
+
+        UP = posx(0, 0, 100, 0, 0, 0)
 
         POS_AIR = [261.31, -343.97, 329.04, 114.58, -179.02, 115.44]
         place_up = [
@@ -122,13 +127,16 @@ def main(args=None):
             POS_PLACE[5]
         ]
 
-        movej(POS_AIR, vel=80, acc=80)
+        movel(UP, vel=80, acc=80, mod=DR_MV_MOD_REL)
+        # 
+        movel(POS_AIR, vel=80, acc=80)
         # movej(place_up, vel=80, acc=80)
-        movel(place_up, vel=80, acc=80)
+        # movel(place_up, vel=80, acc=80)
         movel(POS_PLACE, vel=80, acc=80)
         release()
         movel(place_up, vel=80, acc=80)
-        
+        ## aliance로 바닥에 닿았을떄(force 감지) 그리퍼 놓는 동작 추가 필요
+
 
         movej(J_READY, vel=40, acc=40)
         print("모든 공정 완료")
