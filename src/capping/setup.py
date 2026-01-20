@@ -24,6 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'move_caping = cobot1.move_caping:main'
         ],
     },
 )
