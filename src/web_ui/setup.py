@@ -37,6 +37,7 @@ setup(
             'move_line = web_ui.move_line_node:main',
             'tool = web_ui.tool_node:main',
             'move_home = web_ui.move_home_node:main',
+            'status_process = web_ui.status_process_node:main',
         ],
     },
 )

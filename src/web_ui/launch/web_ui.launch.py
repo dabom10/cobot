@@ -60,6 +60,14 @@ def generate_launch_description():
             output='screen',
         ),
 
+        # Status Process Node - /dsr01/status, /dsr01/process 토픽 구독
+        Node(
+            package='web_ui',
+            executable='status_process',
+            name='status_process',
+            output='screen',
+        ),
+
         # Firebase Writer Node - 작업 완료 수 등 기타 데이터 전송
         # Node(
         #     package='web_ui',

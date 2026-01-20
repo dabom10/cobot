@@ -410,6 +410,26 @@
                 btn.disabled = false;
             });
         }
+
+        // DSR Status 구독
+        const dsrStatusRef = database.ref('robot_status/dsr_status');
+        dsrStatusRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            const statusEl = document.getElementById('dsr-status-value');
+            if (data && statusEl) {
+                statusEl.innerText = data.value || '-';
+            }
+        });
+
+        // DSR Process 구독
+        const dsrProcessRef = database.ref('robot_status/dsr_process');
+        dsrProcessRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            const processEl = document.getElementById('dsr-process-value');
+            if (data && processEl) {
+                processEl.innerText = data.value !== undefined ? data.value : '-';
+            }
+        });
     </script>
 </head>
 <body>
@@ -421,6 +441,10 @@
     <div class="card">
       <h2>로봇 상태</h2>
       <div id="robot-state-status" class="status-box">-</div>
+      <div class="info" style="margin-top: 10px;">
+        <span style="font-weight: 600;">Status:</span> <span id="dsr-status-value">-</span><br>
+        <span style="font-weight: 600;">Process:</span> <span id="dsr-process-value">-</span>
+      </div>
     </div>
     
     <!-- 관절 각도 -->
