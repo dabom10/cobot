@@ -45,7 +45,7 @@ class MoveHomeNode(Node):
         req = MoveHome.Request()
 
         # target: 0 = Mechanical home (0,0,0,0,0,0), 1 = User home
-        req.target = int(command.get('target', 0))
+        req.target = int(command.get('target', 1))
 
         future = self.client.call_async(req)
         future.add_done_callback(self.service_response_callback)
