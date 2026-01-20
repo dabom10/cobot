@@ -19,16 +19,14 @@ J_MIX_1 = [0, 10, 80,  45,  45,  90]
 J_MIX_2 = [0, 10, 80, -45, -45, -90]
 
 # Task Pose (Raw)
-POS_PICK = [322.7, 8.10, 119.41, 19.83, -179.47, 19.28]
+POS_PICK = [322.7, 8.10, 87.41, 19.83, -179.47, 19.28]
 
-POS_AIR = [261.31, -343.97, 429.04, 114.58, -179.02, 115.44]
+POS_AIR = [261.31, -343.97, 400.04, 114.58, -179.02, 115.44]
 
 POS_PLACE = [
-    [251.1, -331.71, 262.94, 92.46, 162.31, 92.86],
-    [250.7, -317.12, 215.61, 92.59, 162.16, 93.29],
-    [409.69, -326.66, 199.38, 91.56, 162.08, 91.85]
+    [251.1, -386.71, 215.94, 92.46, 162.31, 92.86], # first place
+    [399.69, -381.66, 186.38, 91.56, 162.08, 91.85] # second place
 ]
-
 
 def main(args=None):
     rclpy.init(args=args)
@@ -148,9 +146,10 @@ def main(args=None):
         # ===============================
         pick(POS_PICK)
         shaking(cycle=2)
-        place(POS_PLACE[0])
+        place(POS_PLACE[1])
 
-        movej(J_READY, vel=40, acc=40)
+        movel(POS_AIR, vel=120, acc=120)
+        movej(J_READY, vel=120, acc=120)
         print("[DONE] All Process Completed")
 
     except Exception as e:
