@@ -9,8 +9,8 @@ import time
 ROBOT_ID = "dsr01"
 ROBOT_MODEL = "m0609"
 
-VELOCITY = 500
-ACC = 500
+VELOCITY = 400
+ACC = 400
 SAFE_Z_OFFSET = 100
 
 J_READY = [0, 0, 90, 0, 90, 0]
@@ -82,27 +82,20 @@ def main(args=None):
     # Pick
     # ===============================
     def pick(p):
-        print("[STEP] Pick")
-
         release()
         movej(J_READY, vel=120, acc=120)
-
-        pick_up = posx(0, 0, SAFE_Z_OFFSET, 0, 0, 0)
-        pick_target = posx(*p)
-
-        movel(pick_target, vel=80, acc=80)
+        movel(posx(*p), vel=80, acc=80)
         grip()
-        movel(pick_up, vel=80, acc=80, mod=DR_MV_MOD_REL)
+        movel(
+            posx(0, 0, SAFE_Z_OFFSET, 0, 0, 0),
+            vel=80, acc=80, mod=DR_MV_MOD_REL
+        )
 
     # ===============================
     # Shaking
     # ===============================
     def shaking(cycle=2):
-        print("[STEP] Shaking")
-
-        for i in range(cycle):
-            print(f"  - Cycle {i+1}/{cycle}")
-
+        for _ in range(cycle):
             movej(J_READY, vel=VELOCITY, acc=ACC)
             movej(J_MIX_1, vel=VELOCITY, acc=ACC)
             movej(J_MIX_2, vel=VELOCITY, acc=ACC)
@@ -110,67 +103,90 @@ def main(args=None):
 
             move_periodic(
                 amp=[0, 0, 40, 0, 0, 120],
-                period=0.4,
-                atime=0.05,
-                repeat=1,
-                ref=DR_BASE
+                period=0.4, atime=0.05,
+                repeat=1, ref=DR_BASE
             )
 
             move_periodic(
                 amp=[0, 0, 0, 40, 40, 0],
-                period=0.35,
-                atime=0.05,
-                repeat=1,
-                ref=DR_TOOL
+                period=0.35, atime=0.05,
+                repeat=1, ref=DR_TOOL
             )
 
     # ===============================
     # Place
     # ===============================
     def place(p):
-        print("[STEP] Place")
-
-        place_up = posx(0, 0, SAFE_Z_OFFSET, 0, 0, 0)
-        place_target = posx(*p)
-
-        movel(place_up, vel=80, acc=80, mod=DR_MV_MOD_REL)
+        movel(
+            posx(0, 0, SAFE_Z_OFFSET, 0, 0, 0),
+            vel=80, acc=80, mod=DR_MV_MOD_REL
+        )
         movel(POS_AIR, vel=80, acc=80)
-        movel(place_target, vel=80, acc=80)
-
+        movel(posx(*p), vel=80, acc=80)
         release()
-        movel(place_up, vel=80, acc=80, mod=DR_MV_MOD_REL)
+        movel(
+            posx(0, 0, SAFE_Z_OFFSET, 0, 0, 0),
+            vel=80, acc=80, mod=DR_MV_MOD_REL
+        )
 
     # ===============================
-    # Process Flow (Progress 관리)
+    # Process Flow (start / end 분리)
     # ===============================
     try:
         set_tool("Tool Weight")
         set_tcp("GripperDA_v2")
 
+        progress = 0
         publish_status("start", status_pub)
-        publish_progress(0, process_pub)
+        publish_progress(progress, process_pub)
+        time.sleep(0.5)
 
-        # Pick (30%)
+        # ---------- Pick ----------
+        progress = 10
+        publish_status("pick_start", status_pub)
+        publish_progress(progress, process_pub)
+        time.sleep(0.5)
+
         pick(POS_PICK)
-        publish_status("pick_done", status_pub)
-        publish_progress(30, process_pub)
 
-        # Shaking (60%)
+        progress = 30
+        publish_status("pick_end", status_pub)
+        publish_progress(progress, process_pub)
+        time.sleep(0.5)
+
+        # ---------- Shaking ----------
+        progress = 40
+        publish_status("shake_start", status_pub)
+        publish_progress(progress, process_pub)
+        time.sleep(0.5)
+
         shaking(cycle=2)
-        publish_status("shake_done", status_pub)
-        publish_progress(60, process_pub)
 
-        # Place (90%)
+        progress = 60
+        publish_status("shake_end", status_pub)
+        publish_progress(progress, process_pub)
+        time.sleep(0.5)
+
+        # ---------- Place ----------
+        progress = 70
+        publish_status("place_start", status_pub)
+        publish_progress(progress, process_pub)
+        time.sleep(0.5)
+
         place(POS_PLACE[1])
-        publish_status("place_done", status_pub)
-        publish_progress(90, process_pub)
 
-        # Finish (100%)
+        progress = 90
+        publish_status("place_end", status_pub)
+        publish_progress(progress, process_pub)
+        time.sleep(0.5)
+
+        # ---------- Finish ----------
         movel(POS_AIR, vel=120, acc=120)
         movej(J_READY, vel=120, acc=120)
 
+        progress = 100
         publish_status("completed", status_pub)
-        publish_progress(100, process_pub)
+        publish_progress(progress, process_pub)
 
         print("[DONE] All Process Completed")
 
