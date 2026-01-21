@@ -17,6 +17,8 @@ ROBOT_TCP = "GripperDA_v2"
 # 속도 설정
 VELX = [60, 60]
 ACCX = [100, 100]
+VELX_FAST = [100, 100]
+ACCX_FAST = [120, 120]
 VELX_SLOW = [30, 30]
 ACCX_SLOW = [60, 60]
 VELJ = 60
@@ -56,9 +58,9 @@ POS_PICK = [
 ]
 POS_PLACE = [
     [266.1, -386.71, 200.94, 92.46, 162.31, 92.86],
-    [379.69, -381.66, 186.38, 91.56, 162.08, 91.85]
+    [392.69, -381.66, 186.38, 91.56, 162.08, 91.85]
 ]
-POS_AIR = [300.31, -343.97, 390.04, 114.58, -179.02, 115.44] # x: 261.31 -> 300.31로 변경
+POS_AIR = [305.31, -343.97, 390.04, 114.58, -179.02, 115.44] # x: 261.31 -> 300.31로 변경
 J_READY = [0, 0, 90, 0, 90, 0]
 J_MIX_1 = [0, 10, 80,  45,  45,  90]
 J_MIX_2 = [0, 10, 80, -45, -45, -90]
@@ -120,7 +122,7 @@ class IntegratedSystem:
         bottle_pos = BOTTLE_POSITIONS[idx]
         target_pos = BOTTLE_TARGETS[idx]
         
-        movel(posx([bottle_pos[0], bottle_pos[1], bottle_pos[2]+70, bottle_pos[3], bottle_pos[4], bottle_pos[5]]), vel=VELX, acc=ACCX)
+        movel(posx([bottle_pos[0], bottle_pos[1], bottle_pos[2]+70, bottle_pos[3], bottle_pos[4], bottle_pos[5]]), vel=VELX_FAST, acc=ACCX_FAST)
         movel(posx(bottle_pos), vel=VELX_SLOW, acc=ACCX_SLOW)
         self.grip()
         movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
@@ -150,35 +152,86 @@ class IntegratedSystem:
         movel(posx([target_go[0], target_go[1], target_go[2]+30, target_go[3], target_go[4], target_go[5]]), vel=VELX, acc=ACCX)
         movel(posx([target_go[0], target_go[1], target_go[2]-(idx*10), target_go[3], target_go[4], target_go[5]]), vel=[20,20], acc=ACCX_SLOW)
 
+        # # 힘 제어 누르기
+        # print("뚜껑 누르기")
+        # self.release(); wait(0.3)
+        # movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
+        # self.grip()
+
+
+        # task_compliance_ctrl()
+        # set_stiffnessx([100, 100, 50, 100, 100, 100])
+        # print("순응 제어 설정 완료")    
+        
+        # down_grip_control = len(BOTTLE_TARGETS_GOS)
+        # little_down = posx([0,0,down_grip_control*15-80,0,0,0])
+        # movel(little_down, vel=60, acc=60, mod=DR_MV_MOD_REL)  # 아래로 약간 하강
+        # print('힘제어 시작')
+        # set_desired_force([0, 0, -60, 0, 0, 0], [0, 0, 5, 0, 0, 0], mod=DR_FC_MOD_REL)
+        
+        # while True:
+        #     obj_ok = check_force_condition(DR_AXIS_Z, min=50, max=100) 
+        #     if not obj_ok:  # 힘 감지 (뚜껑 눌림)
+        #             # tp_log("뚜껑 누르기 완료")
+        #             print(obj_ok)
+        #             print('뚜껑 누르기 감지')
+        #             break
+        #     continue
+
+        # if not obj_ok: # 검출 됐다면
+        #         release_force(time=0.0) # 아래로 더이상 내려가지 않게 force 끔
+
+        #         print('힘제어 설정 off')
+
+        #         movel(posx([0,0,70,0,0,0]), vel=60, acc=60, mod=DR_MV_MOD_REL)  # 위로 위치 조정
+        #         release_compliance_ctrl()   
+        
         # 힘 제어 누르기
-        print("뚜껑 누르기")
-        self.release(); wait(0.3)
-        movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
-        self.grip()
+        for i in range(2):
+            force_list = [-60, -50]
+            f_list = [55, 50]
+            print("뚜껑 누르기 : ", [i])
+            if i == 1 :
+                # 그리퍼 90도 회전
+                
+                rot = posj(0,0,0,0,0,90)
+                movej(rot, vel=60, acc=60, mod=DR_MV_MOD_REL)
+                
+        
+            if i == 0 :
+                self.release()
+                wait(0.3)
+                movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
+            self.grip()
 
 
-        task_compliance_ctrl()
-        set_stiffnessx([100, 100, 50, 100, 100, 100])
-        print("순응 제어 설정 완료")    
-        
-        down_grip_control = len(BOTTLE_TARGETS_GOS)
-        little_down = posx([0,0,down_grip_control*15-80,0,0,0])
-        movel(little_down, vel=60, acc=60, mod=DR_MV_MOD_REL)  # 아래로 약간 하강
-        print('힘제어 시작')
-        set_desired_force([0, 0, -55, 0, 0, 0], [0, 0, 5, 0, 0, 0], mod=DR_FC_MOD_REL)
-        while not check_force_condition(DR_AXIS_Z, min=50, max=100): pass
-        release_force(); release_compliance_ctrl()
-        
+            task_compliance_ctrl()
+            set_stiffnessx([100, 100, 50, 100, 100, 100])
+            print("순응 제어 설정 완료")    
+            
+            down_grip_control = len(BOTTLE_TARGETS_GOS)
+            little_down = posx([0,0,down_grip_control*15-80,0,0,0])
+            movel(little_down, vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)  # 아래로 약간 하강
+            print('힘제어 시작')
+            set_desired_force([0, 0, force_list[i], 0, 0, 0], [0, 0, 5, 0, 0, 0], mod=DR_FC_MOD_REL)
+            while True:
+                obj_ok = check_force_condition(DR_AXIS_Z, min=f_list[i], max=100) 
+                if not obj_ok:  # 힘 감지 (뚜껑 눌림)
+                        # tp_log("뚜껑 누르기 완료")
+                        print(obj_ok)
+                        print('뚜껑 누르기 감지')
+                        break
+                continue
+
+            if not obj_ok: # 검출 됐다면
+                
+                    release_force(time=0.0) # 아래로 더이상 내려가지 않게 force 끔  
+                    print('힘제어 설정 off')    
+                    movel(posx([0,0,70,0,0,0]), vel=60, acc=60, mod=DR_MV_MOD_REL)  # 위로 위치 조정
+                    release_compliance_ctrl()       
+
         # 회전 조이기
-
-        # for _ in range(20):
-        #     target_j6 = start_j6 + (360/20)
-        #     start_j6 = target_j6
-        #     if target_j6 > 190: break
-        #     movej(posj([start_j[0], start_j[1], start_j[2], start_j[3], start_j[4], target_j6]), vel=50, acc=80)
-        #     movel(posx([0,0,-(TOTAL_DOWN/20),0,0,0]), vel=[10,30], acc=[30,50], mod=DR_MV_MOD_REL)
-        #     if not check_force_condition(DR_AXIS_C, min=20, max=70): break
-        # count = 0
+        print('회전 조이기 시작')
         self.release()
         down = posx([0, 0, -94, 0, 0, 0])
         movel(down, vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
@@ -191,8 +244,8 @@ class IntegratedSystem:
             print('while 진입')
             # count += 1
             current_j = get_current_posj()
-            target_j6 = start_j6 + (700/20)
-            start_j6 = target_j6
+            target_j6 = start_j6 + 360/20 
+            start_j6 = target_j6 
             if target_j6 > 180:
                 target_j6 = 180
             elif target_j6 < -180:
@@ -202,6 +255,10 @@ class IntegratedSystem:
                 current_j[0], current_j[1], current_j[2],
                 current_j[3], current_j[4], target_j6
             ])
+            # target_j = posj([
+            #     current_j[0], current_j[1], current_j[2],
+            #     current_j[3], current_j[4], J6_END + 60
+            # ])
             movej(target_j, vel=50, acc=80)
             movel(posx([0,0,-(TOTAL_DOWN/20),0,0,0]), vel=[10,30], acc=[30,50], mod=DR_MV_MOD_REL)
             if not check_force_condition(DR_AXIS_C, min=20, max=70):
@@ -217,8 +274,8 @@ class IntegratedSystem:
             else:
                 continue              
             
-        self.release()
-        movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
+        # self.release()
+        # movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
         self.log(f"cycle_{idx+1}_capping_done", base_progress + 25)
 
     def shaking_process(self, idx, base_progress):
@@ -233,6 +290,10 @@ class IntegratedSystem:
         # movel(posx(pick_pos), vel=VELX, acc=ACCX)
         # self.grip()
         # movel(posx([0,0,SAFE_Z_OFFSET,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL) # 어차피 shaking 할때 홈 위치로 가서 이 부분 없어도 괜찮음
+        
+        wait(6)
+        movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
+
         # j6 초기화 
         curr_j = get_current_posj()
         curr_j[5] = 0
