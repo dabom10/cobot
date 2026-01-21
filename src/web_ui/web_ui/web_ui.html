@@ -263,6 +263,17 @@
             <div class="process-value" id="dsr-process-value">0%</div>
           </div>
         </div>
+        <div class="process-info" style="margin-top: 12px;">
+          <div class="process-item" style="flex: 2;">
+            <div class="process-label">로봇 모드</div>
+            <div class="process-value" id="robot-mode-value" style="font-size: 13px;">-</div>
+          </div>
+          <div class="process-item" style="flex: 3; display: flex; gap: 6px; align-items: center; justify-content: center;">
+            <button id="btn-mode-manual" onclick="setRobotMode(0)" style="padding: 6px 12px; font-size: 11px; border: none; border-radius: 6px; cursor: pointer; background: #3b82f6; color: white; font-weight: 600;">Manual</button>
+            <button id="btn-mode-auto" onclick="setRobotMode(1)" style="padding: 6px 12px; font-size: 11px; border: none; border-radius: 6px; cursor: pointer; background: #10b981; color: white; font-weight: 600;">Auto</button>
+            <span id="set-mode-status" style="font-size: 10px; color: #9ca3af; min-width: 40px;">대기</span>
+          </div>
+        </div>
       </div>
 
       <div class="card">
@@ -317,6 +328,10 @@
             <button id="btn-move-line" class="btn btn-orange" onclick="executeMoveLine()">Line</button>
             <span id="move-line-status" class="status-text">대기</span>
           </div>
+          <div class="control-item">
+            <button id="btn-servo-off" class="btn" style="background: var(--danger);" onclick="executeServoOff()">Servo Off</button>
+            <span id="servo-off-status" class="status-text">대기</span>
+          </div>
         </div>
       </div>
     </div>
@@ -339,9 +354,193 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // 데이터 리스너 등록 (관절 각도, 로봇 상태 등 기존 스크립트 로직 유지)
-    // ... (스크립트 부분은 기존 코드와 동일하므로 지면 관계상 생략하지만, 
-    // 위 코드의 ID들(joint_1, dsr-status-value 등)에 맞춰 모두 정상 작동합니다.)
+    // 조인트 상태 구독
+    database.ref('robot_status/joint_states/joints').on('value', (snapshot) => {
+      const joints = snapshot.val();
+      if (joints) {
+        for (let i = 1; i <= 6; i++) {
+          const el = document.getElementById('joint_' + i);
+          if (joints['joint_' + i] && el) {
+            el.innerText = joints['joint_' + i].position_deg?.toFixed(2) || '-';
+          }
+        }
+      }
+    });
+
+    // Robot State 구독
+    database.ref('robot_status/robot_state').on('value', (snapshot) => {
+      const data = snapshot.val();
+      const stateBox = document.getElementById('robot-state-status');
+      if (data && stateBox) {
+        stateBox.innerText = data.state_name || '-';
+        stateBox.className = 'status-badge';
+        if (data.state_name === 'MOVING') stateBox.classList.add('moving');
+        else if (data.state_name === 'EMERGENCY_STOP' || data.state_name === 'SAFE_STOP') stateBox.classList.add('emergency');
+      }
+    });
+
+    // TCP 위치 구독
+    database.ref('robot_status/tcp').on('value', (snapshot) => {
+      const tcp = snapshot.val();
+      if (tcp) {
+        ['x', 'y', 'z', 'rx', 'ry', 'rz'].forEach(f => {
+          const el = document.getElementById('tcp_' + f);
+          if (el && tcp[f] !== undefined) el.innerText = tcp[f].toFixed(2);
+        });
+      }
+    });
+
+    // DSR Status/Process 구독
+    database.ref('robot_status/dsr_status').on('value', (snapshot) => {
+      const data = snapshot.val();
+      const el = document.getElementById('dsr-status-value');
+      if (data && el) el.innerText = data.value || 'system-ready';
+    });
+
+    database.ref('robot_status/dsr_process').on('value', (snapshot) => {
+      const data = snapshot.val();
+      const el = document.getElementById('dsr-process-value');
+      if (data && el) el.innerText = (data.value !== undefined ? data.value + '%' : '0%');
+    });
+
+    // Robot Mode 구독
+    database.ref('robot_status/robot_mode').on('value', (snapshot) => {
+      const data = snapshot.val();
+      const el = document.getElementById('robot-mode-value');
+      if (data && el) el.innerText = data.robot_mode || '-';
+    });
+
+    // Set Robot Mode
+    const setRobotModeRef = database.ref('robot_command/set_robot_mode');
+    setRobotModeRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      const statusEl = document.getElementById('set-mode-status');
+      if (data?.status && statusEl) {
+        if (data.status === 'success') {
+          statusEl.style.color = '#10b981';
+          statusEl.innerText = 'OK';
+        } else if (data.status === 'failed' || data.status.startsWith?.('error')) {
+          statusEl.style.color = '#ef4444';
+          statusEl.innerText = 'Fail';
+        } else {
+          statusEl.style.color = '#3b82f6';
+          statusEl.innerText = '...';
+        }
+      }
+    });
+
+    function setRobotMode(mode) {
+      const modeNames = {0: 'Manual', 1: 'Auto', 2: 'Measure'};
+      if (!confirm(`로봇 모드를 ${modeNames[mode]}로 변경하시겠습니까?`)) return;
+
+      document.getElementById('btn-mode-manual').disabled = true;
+      document.getElementById('btn-mode-auto').disabled = true;
+      document.getElementById('set-mode-status').innerText = '...';
+      document.getElementById('set-mode-status').style.color = '#3b82f6';
+
+      setRobotModeRef.update({ execute: true, status: 'pending', mode: mode })
+        .finally(() => {
+          setTimeout(() => {
+            document.getElementById('btn-mode-manual').disabled = false;
+            document.getElementById('btn-mode-auto').disabled = false;
+          }, 1000);
+        });
+    }
+
+    // Current Tool 구독
+    database.ref('robot_status/current_tool').on('value', (snapshot) => {
+      const data = snapshot.val();
+      const el = document.getElementById('current-tool-name');
+      if (data && el) el.innerText = data.name || '-';
+    });
+
+    // Error 구독
+    const errorRef = database.ref('robot_status/error');
+    errorRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      const container = document.getElementById('error-container');
+      const msg = document.getElementById('error-message');
+      if (data && container && msg) {
+        if (data.has_error && data.message) {
+          container.style.display = 'block';
+          msg.innerText = data.message;
+        } else {
+          container.style.display = 'none';
+        }
+      }
+    });
+
+    function clearError() {
+      errorRef.update({ message: '', has_error: false, last_update: Date.now() / 1000 });
+    }
+
+    // Move Home
+    const moveHomeRef = database.ref('robot_command/move_home');
+    moveHomeRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data?.status) updateStatus('move-home-status', data.status);
+    });
+
+    function executeMoveHome(target) {
+      document.getElementById('btn-move-home-1').disabled = true;
+      updateStatus('move-home-status', 'pending');
+      moveHomeRef.update({ execute: true, status: 'pending', target: target })
+        .finally(() => setTimeout(() => document.getElementById('btn-move-home-1').disabled = false, 1000));
+    }
+
+    // Move Circle
+    const moveCircleRef = database.ref('robot_command/move_circle');
+    moveCircleRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data?.status) updateStatus('move-circle-status', data.status);
+    });
+
+    function executeMoveCircle() {
+      document.getElementById('btn-move-circle').disabled = true;
+      updateStatus('move-circle-status', 'pending');
+      moveCircleRef.update({ execute: true, status: 'pending' })
+        .finally(() => setTimeout(() => document.getElementById('btn-move-circle').disabled = false, 1000));
+    }
+
+    // Move Line
+    const moveLineRef = database.ref('robot_command/move_line');
+    moveLineRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data?.status) updateStatus('move-line-status', data.status);
+    });
+
+    function executeMoveLine() {
+      document.getElementById('btn-move-line').disabled = true;
+      updateStatus('move-line-status', 'pending');
+      moveLineRef.update({ execute: true, status: 'pending' })
+        .finally(() => setTimeout(() => document.getElementById('btn-move-line').disabled = false, 1000));
+    }
+
+    // Servo Off
+    const servoOffRef = database.ref('robot_command/servo_off');
+    servoOffRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data?.status) updateStatus('servo-off-status', data.status);
+    });
+
+    function executeServoOff() {
+      if (!confirm('정말 Servo Off를 실행하시겠습니까?')) return;
+      document.getElementById('btn-servo-off').disabled = true;
+      updateStatus('servo-off-status', 'pending');
+      servoOffRef.update({ execute: true, status: 'pending' })
+        .finally(() => setTimeout(() => document.getElementById('btn-servo-off').disabled = false, 1000));
+    }
+
+    // 상태 업데이트 헬퍼
+    function updateStatus(id, status) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.className = 'status-text';
+      if (status === 'success') { el.style.color = 'var(--success)'; el.innerText = 'Success'; }
+      else if (status === 'failed' || status.startsWith?.('error')) { el.style.color = 'var(--danger)'; el.innerText = 'Failed'; }
+      else if (status === 'pending') { el.style.color = 'var(--primary)'; el.innerText = '실행중...'; }
+      else { el.style.color = 'var(--gray-400)'; el.innerText = status || '대기'; }
+    }
   </script>
 </body>
 </html>

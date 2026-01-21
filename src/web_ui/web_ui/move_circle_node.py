@@ -22,7 +22,8 @@ class MoveCircleNode(Node):
         )
 
         while not self.client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('Waiting for move_circle service...')
+            pass
+            #self.get_logger().info('Waiting for move_circle service...')
 
         self.get_logger().info('move_circle service ready')
 

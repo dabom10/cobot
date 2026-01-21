@@ -38,6 +38,10 @@ setup(
             'tool = web_ui.tool_node:main',
             'move_home = web_ui.move_home_node:main',
             'status_process = web_ui.status_process_node:main',
+            'error_firebase = web_ui.error_firebase_node:main',
+            'servo_off = web_ui.servo_off_node:main',
+            'robot_mode = web_ui.robot_mode_node:main',
+            'set_robot_mode = web_ui.set_robot_mode_node:main',
         ],
     },
 )

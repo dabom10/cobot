@@ -21,7 +21,8 @@ class MoveLineNode(Node):
         )
 
         while not self.client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('Waiting for move_line service...')
+            pass
+        #self.get_logger().info('Waiting for move_line service...')
 
         self.get_logger().info('move_line service ready')
 
@@ -45,7 +46,8 @@ class MoveLineNode(Node):
         req = MoveLine.Request()
 
         # pos: 목표 위치 [x, y, z, rx, ry, rz]
-        pos = command.get('pos', [400.0, 0.0, 300.0, 0.0, 180.0, 0.0])
+        #pos = command.get('pos', [400.0, 0.0, 300.0, 0.0, 180.0, 0.0])
+        pos = command.get('pos', [0.0, 0.0, -300.0, 0.0, 0.0, 0.0])
         req.pos = [float(v) for v in pos]
 
         # 속도, 가속도 설정

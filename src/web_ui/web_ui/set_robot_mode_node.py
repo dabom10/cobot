@@ -1,30 +1,29 @@
 import rclpy
 from rclpy.node import Node
-from dsr_msgs2.srv import MoveHome
+from dsr_msgs2.srv import SetRobotMode
 
 from web_ui.firebase_config import init_firebase, get_reference
 
 
-class MoveHomeNode(Node):
+class SetRobotModeNode(Node):
     def __init__(self):
-        super().__init__('move_home_node')
-        self.get_logger().info("Move Home Node 시작")
+        super().__init__('set_robot_mode_node')
+        self.get_logger().info("Set Robot Mode Node 시작")
 
         init_firebase(self.get_logger())
 
         # Firebase command reference
-        self.command_ref = get_reference('/robot_command/move_home')
+        self.command_ref = get_reference('/robot_command/set_robot_mode')
 
         self.client = self.create_client(
-            MoveHome,
-            '/dsr01/motion/move_home'
+            SetRobotMode,
+            '/dsr01/system/set_robot_mode'
         )
 
         while not self.client.wait_for_service(timeout_sec=1.0):
-            pass
-            #self.get_logger().info('Waiting for move_home service...')
+            self.get_logger().info('Waiting for set_robot_mode service...')
 
-        self.get_logger().info('move_home service ready')
+        self.get_logger().info('set_robot_mode service ready')
 
         # Firebase 리스너 설정
         self.command_ref.listen(self.on_command)
@@ -36,17 +35,17 @@ class MoveHomeNode(Node):
 
         command = event.data
         if command.get('execute') == True:
-            self.get_logger().info('Move Home 명령 수신')
-            self.execute_move_home(command)
+            mode = command.get('mode', 0)
+            mode_names = {0: 'MANUAL', 1: 'AUTONOMOUS', 2: 'MEASURE'}
+            self.get_logger().info(f'Set Robot Mode 명령 수신: {mode_names.get(mode, "UNKNOWN")}')
+            self.execute_set_robot_mode(mode)
             # 실행 후 execute 플래그 초기화
             self.command_ref.update({'execute': False})
 
-    def execute_move_home(self, command):
-        """MoveHome 서비스 호출"""
-        req = MoveHome.Request()
-
-        # target: 0 = Mechanical home (0,0,0,0,0,0), 1 = User home
-        req.target = int(command.get('target', 1))
+    def execute_set_robot_mode(self, mode):
+        """SetRobotMode 서비스 호출"""
+        req = SetRobotMode.Request()
+        req.robot_mode = int(mode)
 
         future = self.client.call_async(req)
         future.add_done_callback(self.service_response_callback)
@@ -55,10 +54,10 @@ class MoveHomeNode(Node):
         try:
             response = future.result()
             if response.success:
-                self.get_logger().info('Move Home 성공')
+                self.get_logger().info('Set Robot Mode 성공')
                 self.command_ref.update({'status': 'success'})
             else:
-                self.get_logger().error(f'Move Home 실패: res={response.res}')
+                self.get_logger().error('Set Robot Mode 실패')
                 self.command_ref.update({'status': 'failed'})
         except Exception as e:
             self.get_logger().error(f'Service call failed: {e}')
@@ -67,7 +66,7 @@ class MoveHomeNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = MoveHomeNode()
+    node = SetRobotModeNode()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

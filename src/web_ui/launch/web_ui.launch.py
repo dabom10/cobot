@@ -68,11 +68,35 @@ def generate_launch_description():
             output='screen',
         ),
 
-        # Firebase Writer Node - 작업 완료 수 등 기타 데이터 전송
-        # Node(
-        #     package='web_ui',
-        #     executable='firebase_writer',
-        #     name='firebase_writer_node',
-        #     output='screen',
-        # ),
+        # Error Firebase Node - /dsr01/error 토픽 구독
+        Node(
+            package='web_ui',
+            executable='error_firebase',
+            name='error_firebase',
+            output='screen',
+        ),
+
+        # Servo Off Node - Firebase에서 명령 수신하여 서보 오프 실행
+        Node(
+            package='web_ui',
+            executable='servo_off',
+            name='servo_off',
+            output='screen',
+        ),
+
+        # Robot Mode Node - 로봇 모드 정보 조회
+        Node(
+            package='web_ui',
+            executable='robot_mode',
+            name='robot_mode',
+            output='screen',
+        ),
+
+        # Set Robot Mode Node - 로봇 모드 변경
+        Node(
+            package='web_ui',
+            executable='set_robot_mode',
+            name='set_robot_mode',
+            output='screen',
+        ),
     ])
