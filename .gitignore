@@ -20,3 +20,4 @@ install/
 log/
 *.o
 *.so
+log/

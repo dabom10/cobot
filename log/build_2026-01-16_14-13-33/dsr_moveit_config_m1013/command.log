@@ -1,6 +1,0 @@
-Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_m1013': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_moveit2/dsr_moveit_config_m1013 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_moveit_config_m1013
-Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_m1013' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rokey/cobot_ws/src/doosan-robot2/dsr_moveit2/dsr_moveit_config_m1013 -DCMAKE_INSTALL_PREFIX=/home/rokey/cobot_ws/install/dsr_moveit_config_m1013
-Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_m1013': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_moveit_config_m1013 -- -j8 -l8
-Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_m1013' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rokey/cobot_ws/build/dsr_moveit_config_m1013 -- -j8 -l8
-Invoking command in '/home/rokey/cobot_ws/build/dsr_moveit_config_m1013': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_moveit_config_m1013
-Invoked command in '/home/rokey/cobot_ws/build/dsr_moveit_config_m1013' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rokey/cobot_ws/build/dsr_moveit_config_m1013
