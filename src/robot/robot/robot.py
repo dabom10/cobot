@@ -106,7 +106,7 @@ class IntegratedSystem:
         except: pass
         set_tool(ROBOT_TOOL); set_tcp(ROBOT_TCP)
         movej(J_READY, vel=VELJ, acc=ACCJ)
-        self.log("system_ready", 0)
+        self.log("시스템 준비 완료", 0)
 
     def capping_process(self, idx, base_progress):
         """캡핑 공정 세부 로직"""
@@ -115,7 +115,7 @@ class IntegratedSystem:
                                  check_force_condition, DR_AXIS_Z, DR_AXIS_C, release_force, 
                                  release_compliance_ctrl, DR_FC_MOD_REL, posj,get_current_posx)
 
-        self.log(f"cycle_{idx+1}_capping_start", base_progress + 5)
+        self.log(f"캡핑 공정을 시작합니다.. (사이클 : {idx+1} 회)", base_progress + 5)
         
         # 1. 병 이동
         self.release()
@@ -212,7 +212,7 @@ class IntegratedSystem:
             down_grip_control = len(BOTTLE_TARGETS_GOS)
             little_down = posx([0,0,down_grip_control*15-80,0,0,0])
             movel(little_down, vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)  # 아래로 약간 하강
-            print('힘제어 시작')
+            print('힘 제어 시작')
             set_desired_force([0, 0, force_list[i], 0, 0, 0], [0, 0, 5, 0, 0, 0], mod=DR_FC_MOD_REL)
             while True:
                 obj_ok = check_force_condition(DR_AXIS_Z, min=f_list[i], max=100) 
@@ -276,13 +276,13 @@ class IntegratedSystem:
             
         # self.release()
         # movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
-        self.log(f"cycle_{idx+1}_capping_done", base_progress + 25)
+        self.log(f"캡핑 공정 완료 (사이클 : {idx+1} 회)", base_progress + 25)
 
     def shaking_process(self, idx, base_progress):
         """쉐이킹 공정 세부 로직"""
         from DSR_ROBOT2 import movel, movej, move_periodic, get_current_posj, DR_BASE, DR_TOOL, posx, DR_MV_MOD_REL, wait
 
-        self.log(f"cycle_{idx+1}_shaking_start", base_progress + 30)
+        self.log(f"쉐이킹 공정을 시작합니다.. (사이클 : {idx+1} 회)", base_progress + 30)
         
         # 1. Pick (캡핑된 병 위치)
         # pick_pos = POS_PICK[idx] # 캡핑하고 바로 시작하는거라 필요없음
@@ -315,7 +315,7 @@ class IntegratedSystem:
         self.release()
         movel(posx([0,0,SAFE_Z_OFFSET,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
         
-        self.log(f"cycle_{idx+1}_shaking_done", base_progress + 50)
+        self.log(f"쉐이킹 동작 완료 (사이클 : {idx+1} 회)", base_progress + 50)
 
     def run(self):
         """전체 2사이클 실행 루프"""
@@ -330,7 +330,7 @@ class IntegratedSystem:
         movej(POS_AIR, vel=VELJ, acc=ACCJ)
         movel(POS_HOME_BEFORE, vel=VELX, acc=ACCX) # 빼고도 구조물에 안걸리는지 확인 필요함->걸려.....^^
         movej(J_READY, vel=VELJ, acc=ACCJ)
-        self.log("all_process_completed", 100)
+        self.log("모든 프로세스가 완료되었습니다.", 100)
 
 def main(args=None):
     rclpy.init(args=args)
