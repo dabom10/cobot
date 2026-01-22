@@ -40,8 +40,10 @@ ITERATION = 5
 # 각 관절별 흔들림 진폭
 AMP_J3 = 10 
 AMP_J4 = 15
-AMP_J5 = 20
+AMP_J5 = 20 
 AMP_J6 = 20
+TILT_ANGLE = 45 # 기울기 각도
+
 # 로봇 관절 한계치 (입력해주신 값 기준, 안전 여유 2도 제외)
 joint_limits = [
             (-360 + 2, 360 - 2), # J1
@@ -151,12 +153,12 @@ class IntegratedSystem:
         self.release()
         bottle_pos = BOTTLE_POSITIONS[idx]
         target_pos = BOTTLE_TARGETS[idx]
-        if idx == 1:
-            try:    
-                movel(posx(BOTTLE_POS_2), vel=VELX_FAST, acc=ACCX_FAST)
-            except:
-                self.move_home()
-            wait(2)  # 두 번째 병 대기 시간
+        # if idx == 1:
+        #     try:    
+        #         movel(posx(BOTTLE_POS_2), vel=VELX_FAST, acc=ACCX_FAST)
+        #     except:
+        #         self.move_home()
+        #     wait(2)  # 두 번째 병 대기 시간
 
         movel(posx([bottle_pos[0], bottle_pos[1], bottle_pos[2]+70, bottle_pos[3], bottle_pos[4], bottle_pos[5]]), vel=VELX_FAST, acc=ACCX_FAST)
         movel(posx(bottle_pos), vel=VELX_SLOW, acc=ACCX_SLOW)
@@ -257,9 +259,10 @@ class IntegratedSystem:
 
             if not obj_ok: # 검출 됐다면
                 release_force(time=0.0) # 아래로 더이상 내려가지 않게 force 끔  
-                print('힘제어 설정 off')    
+                print('힘제어 설정 off')   
+                release_compliance_ctrl() 
                 movel(posx([0,0,70,0,0,0]), vel=60, acc=60, mod=DR_MV_MOD_REL)  # 위로 위치 조정
-                release_compliance_ctrl()       
+                # release_compliance_ctrl()       
 
         # 회전 조이기
         print('회전 조이기 시작')
@@ -390,22 +393,13 @@ class IntegratedSystem:
         for i in range(ITERATION):
             print(f"{i+1}번째 쉐이킹 동작 실행 중...")
 
-            # 1) 위로 이동 오프셋 o
+            # shake 1) 위로 이동 오프셋 
             offsets_up = [0, 0, -AMP_J3, -AMP_J4, -AMP_J5, -AMP_J6]
             target_up = get_safe_joint(start_j, offsets_up)
-
-            # 2) 아래로 이동 오프셋
+            # shake 2) 아래로 이동 오프셋
             offsets_down = [0, 0, AMP_J3, AMP_J4, AMP_J5, AMP_J6]
             target_down = get_safe_joint(start_j, offsets_down)
 
-            # # 마지막 루프 여부에 따른 블렌딩 반경 설정
-            # is_last = (i == ITERATION - 1)
-            # r_val = 0 if is_last else 15
-
-            # [주의] mod=DR_MV_MOD_REL를 제거했습니다 (이미 절대 좌표 계산됨)
-            # # [주의] r=r_val 대신 radius=r_val를 사용했습니다
-            # movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=r_val)
-            # movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=r_val)
 
             movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
             movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
@@ -426,7 +420,7 @@ class IntegratedSystem:
         """전체 2사이클 실행 루프"""
         from DSR_ROBOT2 import movel, movej
         self.initialize()
-        for i in range(2):
+        for i in range(1,2):
             base_p = i * 50
             self.capping_process(i, base_p)
             self.shaking_process(i, base_p)
