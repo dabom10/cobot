@@ -69,7 +69,7 @@ BOTTLE_TARGETS = [
 ]
 BOTTLE_TARGETS_GOS = [
     [319.7, 6.10, 119.41, 19.83, 180, 19.28],
-    [318.7, 5.10, 99.53, 19.83, 180, 19.28] # [319.7, 6.10, 99.53, 19.83, 180, 19.28] 
+    [318.7+3, 5.10, 99.53, 19.83, 180, 19.28] # [319.7, 6.10, 99.53, 19.83, 180, 19.28] 
 ]
 CAP_POSITIONS = [
     [569.72, 238.92, 82.52, 130.85, 180, 130.39], # CAP 2
@@ -388,22 +388,33 @@ class IntegratedSystem:
         movej(J_SHAKE_START, vel=VELJ, acc=ACCJ)
         print("쉐이킹 시작 위치 도달")
         # movel(posx([0,0,100,0,0,0]), vel=100, acc=100, mod=DR_MV_MOD_REL)
-        start_j = get_current_posj()    
+        start_j_normal = get_current_posj()    
         
         for i in range(ITERATION):
-            print(f"{i+1}번째 쉐이킹 동작 실행 중...")
+            print(f"기본 쉐이킹 동작 시작...")
 
             # shake 1) 위로 이동 오프셋 
             offsets_up = [0, 0, -AMP_J3, -AMP_J4, -AMP_J5, -AMP_J6]
-            target_up = get_safe_joint(start_j, offsets_up)
+            target_up = get_safe_joint(start_j_normal, offsets_up)
             # shake 2) 아래로 이동 오프셋
             offsets_down = [0, 0, AMP_J3, AMP_J4, AMP_J5, AMP_J6]
-            target_down = get_safe_joint(start_j, offsets_down)
-
+            target_down = get_safe_joint(start_j_normal, offsets_down)
 
             movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
             movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
 
+        # ## --- [모션 2: 가로(좌우 비틀기) 쉐이킹] ---
+        # # J4를 90도 돌리지 않고, 현재 상태에서 J4와 J6만 교차로 흔듭니다.
+        # print("2. 좌우 비틀기(가로) 쉐이킹 시작")
+        
+        # for i in range(ITERATION):
+        #     # J3(팔꿈치), J5(스냅)는 고정(0)하고 J4와 J6만 반대 방향으로 흔듦
+        #     # 이렇게 하면 병이 제자리에서 좌우로 빠르게 회전하며 가로 쉐이킹 효과를 냅니다.
+        #     target_left = get_safe_joint(start_j_normal, [0, 0, 0, -30, 0, 30])
+        #     target_right = get_safe_joint(start_j_normal, [0, 0, 0, 30, 0, -30])
+            
+        #     movej(target_left, vel=VEL_SHAKE + 50, acc=ACC_SHAKE + 200, radius=5)
+        #     movej(target_right, vel=VEL_SHAKE + 50, acc=ACC_SHAKE + 200, radius=5)
         print("쉐이킹 동작 완료")
         
         # 3. Place
@@ -420,9 +431,9 @@ class IntegratedSystem:
         """전체 2사이클 실행 루프"""
         from DSR_ROBOT2 import movel, movej
         self.initialize()
-        for i in range(1,2):
+        for i in range(2):
             base_p = i * 50
-            self.capping_process(i, base_p)
+            # self.capping_process(i, base_p)
             self.shaking_process(i, base_p)
         
         from DSR_ROBOT2 import movej
@@ -439,10 +450,10 @@ def main(args=None):
     DR_init.__dsr__model = ROBOT_MODEL #[305.31, -343.97, 390.04, 114.58, -179.02, 115.44]
     from DSR_ROBOT2 import release_force, get_tcp, release_compliance_ctrl
 
-    if get_tcp() != ROBOT_TCP:
-        print(f"엔드이펙터 - Gripper 오류 : {get_tcp()}")
-        node.destroy_node()
-        rclpy.shutdown()
+    # if get_tcp() != ROBOT_TCP:
+    #     print(f"엔드이펙터 - Gripper 오류: {get_tcp()} != {ROBOT_TCP}")
+    #     node.destroy_node()
+    #     rclpy.shutdown()
 
     print(f"엔드이펙터 - Gripper : {get_tcp()}")
 
