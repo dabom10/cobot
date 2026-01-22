@@ -354,7 +354,7 @@ class IntegratedSystem:
 
         self.log(f"쉐이킹 공정을 시작합니다.. (사이클 : {idx+1} 회)", base_progress + 30)
         
-        # 1. Pick (캡핑된 병 위치)
+        # 1. Pick (캡핑된 병 위치) 
         # pick_pos = POS_PICK[idx] # 캡핑하고 바로 시작하는거라 필요없음
         # movej(J_READY, vel=VELJ, acc=ACCJ) # 지움
         # movel(posx(pick_pos), vel=VELX, acc=ACCX)
@@ -373,62 +373,13 @@ class IntegratedSystem:
 
         # 2. Shaking
 
-        J_SHAKE = [0, 0, 90, 0, 0, -180]
-        J_SHAKE_2 = [0, 0, 90, 0, 0, -180]
-
-        for _ in range(4):
-            movej(J_SHAKE, vel=VEL_SHAKE, acc=ACC_SHAKE)
-            movej(J_SHAKE_2, vel=VEL_SHAKE, acc=ACC_SHAKE)
-        # # def get_safe_joint(base_j, offsets):
-        # for _ in range(2):
-        #     # movej(J_READY, vel=60, acc=ACC_SHAKE) # 갑자기 슉 가는 부분(해결함)
-        #     movej(J_MIX_1, vel=VEL_SHAKE, acc=ACC_SHAKE)
-        #     movej(J_MIX_2, vel=VEL_SHAKE, acc=ACC_SHAKE)
-        #     movej(J_READY, vel=VEL_SHAKE, acc=ACC_SHAKE)
-        #     move_periodic(amp=[0,0,40,0,0,120], period=0.4, repeat=1, ref=DR_BASE)
-        #     move_periodic(amp=[0,0,0,40,40,0], period=0.35, repeat=1, ref=DR_TOOL)
-        #     """현재 각도에 오프셋을 더한 뒤 한계치 넘지 않도록 보정"""
-        #     safe_target = []
-        #     for i in range(6):
-        #         target_val = base_j[i] + offsets[i]
-        #         min_limit, max_limit = joint_limits[i]
-        #         if target_val < min_limit: target_val = min_limit
-        #         if target_val > max_limit: target_val = max_limit
-        #         safe_target.append(target_val)
-        #     return safe_target
-        
-
-        # # movel(posx([505.31, 43.97, 340.04, 114.58, -179.02, 115.44]), vel=VEL_SHAKE, acc=ACC_SHAKE)  # 쉐이킹 시작 위치로 이동 -> 필요없음
-        # movej(J_SHAKE_START, vel=VELJ, acc=ACCJ)
-        # print("쉐이킹 시작 위치 도달")
-        # # movel(posx([0,0,100,0,0,0]), vel=100, acc=100, mod=DR_MV_MOD_REL)
-        # start_j_normal = get_current_posj()    
-        
-        # for i in range(ITERATION):
-        #     print(f"기본 쉐이킹 동작 시작...")
-
-        #     # shake 1) 위로 이동 오프셋 
-        #     offsets_up = [0, 0, -AMP_J3, -AMP_J4, -AMP_J5, -AMP_J6]
-        #     target_up = get_safe_joint(start_j_normal, offsets_up)
-        #     # shake 2) 아래로 이동 오프셋
-        #     offsets_down = [0, 0, AMP_J3, AMP_J4, AMP_J5, AMP_J6]
-        #     target_down = get_safe_joint(start_j_normal, offsets_down)
-
-        #     movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
-        #     movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
-
-        # ## --- [모션 2: 가로(좌우 비틀기) 쉐이킹] ---
-        # # J4를 90도 돌리지 않고, 현재 상태에서 J4와 J6만 교차로 흔듭니다.
-        # print("2. 좌우 비틀기(가로) 쉐이킹 시작")
-        
-        # for i in range(ITERATION):
-        #     # J3(팔꿈치), J5(스냅)는 고정(0)하고 J4와 J6만 반대 방향으로 흔듦
-        #     # 이렇게 하면 병이 제자리에서 좌우로 빠르게 회전하며 가로 쉐이킹 효과를 냅니다.
-        #     target_left = get_safe_joint(start_j_normal, [0, 0, 0, -30, 0, 30])
-        #     target_right = get_safe_joint(start_j_normal, [0, 0, 0, 30, 0, -30])
-            
-        #     movej(target_left, vel=VEL_SHAKE + 50, acc=ACC_SHAKE + 200, radius=5)
-        #     movej(target_right, vel=VEL_SHAKE + 50, acc=ACC_SHAKE + 200, radius=5)
+        for _ in range(2):
+            # movej(J_READY, vel=60, acc=ACC_SHAKE) # 갑자기 슉 가는 부분(해결함)
+            movej(J_MIX_1, vel=VEL_SHAKE, acc=ACC_SHAKE)
+            movej(J_MIX_2, vel=VEL_SHAKE, acc=ACC_SHAKE)
+            movej(J_READY, vel=VEL_SHAKE, acc=ACC_SHAKE)
+            move_periodic(amp=[0,0,40,0,0,120], period=0.4, repeat=1, ref=DR_BASE)
+            move_periodic(amp=[0,0,0,40,40,0], period=0.35, repeat=1, ref=DR_TOOL)
         print("쉐이킹 동작 완료")
         
         # 3. Place
