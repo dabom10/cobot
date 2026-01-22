@@ -4,6 +4,7 @@
 import time
 import rclpy
 import DR_init
+from rclpy.node import Node
 from std_msgs.msg import String, Int32
 
 # ========================================
@@ -100,20 +101,24 @@ class IntegratedSystem:
         self.node = node
         self.status_pub = node.create_publisher(String, "status", 10)
         self.process_pub = node.create_publisher(Int32, "process", 10)
-        self.sub = node.create_subscription(Int32, "dsr01/user_cmd", self.listener_callback, 10)
+        self.sub = node.create_subscription(Int32, "/dsr01/user_cmd", self.listener_callback, 10)
         self.user_cmd = 1   # ⭐ 기본값: 계속 진행
-    
+
     def listener_callback(self, msg):
         number = msg.data
         self.user_cmd = number   # ⭐ 상태 저장
+        print("msg", msg)
+        print("number", number)
+        print("self.user_cmd", self.user_cmd)
 
-        self.get_logger().info(f'Received: {number}')
+        self.node.get_logger().info(f'Received: {number}')
 
         if number == 0:
-            self.get_logger().warn("User requested HOME")
+            print("number == 0 : ", number)
+            self.node.get_logger().warn("User requested HOME")
         elif number == 1:
+            print("number == 1 : ", number)
             pass
-
 
     def log(self, status_text, progress_val):
         """상태와 진행률 동시 발행"""
@@ -164,13 +169,20 @@ class IntegratedSystem:
         self.release()
         bottle_pos = BOTTLE_POSITIONS[idx]
         target_pos = BOTTLE_TARGETS[idx]
-        if idx == 0:
-            # ⭐ subscriber로 받은 값 확인
-            if self.user_cmd == 0:
-                self.move_home()
-                return   # capping_process 중단 (홈으로 갔으니 더 진행 안 함)
-            wait(5)
-
+        # if idx == 0:
+        #     # ⭐ subscriber로 받은 값 확인
+        #     if self.user_cmd == 0:
+        #         self.move_home()
+        #         return   # capping_process 중단 (홈으로 갔으니 더 진행 안 함)
+        #     wait(5)
+        if idx == 1:
+            for _ in range(50):  # 5초 대기하면서 체크
+                rclpy.spin_once(self.node, timeout_sec=0.1)
+                if self.user_cmd == 0:
+                    print("User requested HOME and cancelling capping process.")
+                    movel(posx(BOTTLE_POS_2), vel=VELX_FAST, acc=ACCX_FAST)
+                    self.move_home()
+                    return
 
         movel(posx([bottle_pos[0], bottle_pos[1], bottle_pos[2]+70, bottle_pos[3], bottle_pos[4], bottle_pos[5]]), vel=VELX_FAST, acc=ACCX_FAST)
         movel(posx(bottle_pos), vel=VELX_SLOW, acc=ACCX_SLOW)
@@ -456,18 +468,20 @@ def main(args=None):
     node = rclpy.create_node("integrated_automation_node", namespace=ROBOT_ID)
     DR_init.__dsr__node = node
     DR_init.__dsr__id = ROBOT_ID
-    DR_init.__dsr__model = ROBOT_MODEL #[305.31, -343.97, 390.04, 114.58, -179.02, 115.44]
+    DR_init.__dsr__model = ROBOT_MODEL
+
     from DSR_ROBOT2 import release_force, get_tcp, release_compliance_ctrl
 
-    if get_tcp() != ROBOT_TCP:
-        print(f"엔드이펙터 - Gripper 오류 : {get_tcp()}")
-        node.destroy_node()
-        rclpy.shutdown()
+    # if get_tcp() != ROBOT_TCP:
+    #     print(f"엔드이펙터 - Gripper 오류: {get_tcp()} != {ROBOT_TCP}")
+    #     node.destroy_node()
+    #     rclpy.shutdown()
+    #     return
 
     print(f"엔드이펙터 - Gripper : {get_tcp()}")
 
     system = IntegratedSystem(node)
-    
+
     release_force(time=0.0)
     release_compliance_ctrl()
 
