@@ -23,8 +23,8 @@ VELX_SLOW = [30, 30]
 ACCX_SLOW = [60, 60]
 VELJ = 60
 ACCJ = 60
-VEL_SHAKE = 60
-ACC_SHAKE = 60
+VEL_SHAKE = 300
+ACC_SHAKE = 350
 MOVE_DIST = 40 # 위아래 이동 거리
 SNAP_J5 = 20
 SNAP_J6 = 15
@@ -82,12 +82,12 @@ POS_PLACE = [
     [266.1, -386.71, 200.94, 92.46, 162.31, 92.86],
     [392.69, -381.66, 186.38, 91.56, 162.08, 91.85]
 ]
-POS_AIR = [305.31, -343.97, 390.04, 114.58, -179.02, 115.44] # x: 261.31 -> 300.31로 변경
+POS_AIR = [305.31, -43.97, 480.04, 114.58, -179.02, 115.44] # x: 261.31 -> 300.31로 변경
 J_READY = [0, 0, 90, 0, 90, 0]
 J_MIX_1 = [0, 10, 80,  45,  45,  90]
 J_MIX_2 = [0, 10, 80, -45, -45, -90]
 POS_HOME_BEFORE = [317.34, -307.11, 344.5, 125.41, -170.49, 127.82] # 마지막 동작에서 movel -> movej로 디버깅해서 괜찮을 수도 있음
-J_SHAKE_START=[2.98, 17, 63.38, -24.65, 52.10, -1.4]
+J_SHAKE_START=[2.98, 17, 63.38, -24.65, 52.10, -180.0]
 
 
 # 캡핑 회전 상수
@@ -99,6 +99,7 @@ class IntegratedSystem:
         self.node = node
         self.status_pub = node.create_publisher(String, "status", 10)
         self.process_pub = node.create_publisher(Int32, "process", 10)
+        # node.create_subscriber(String, "command", self.move_home, 10)
 
     def log(self, status_text, progress_val):
         """상태와 진행률 동시 발행"""
@@ -110,6 +111,11 @@ class IntegratedSystem:
         p_msg.data = int(progress_val)
         self.process_pub.publish(p_msg)
         print(f"[STATUS] {status_text} | [PROGRESS] {progress_val}%")
+
+    # 홈 위치 이동 함수
+    def move_home(self):
+        from DSR_ROBOT2 import movej, movel
+        movej(J_READY, vel=VELJ, acc=ACCJ)
 
     @staticmethod
     def grip():
@@ -211,8 +217,8 @@ class IntegratedSystem:
         
         # 힘 제어 누르기
         for i in range(2):
-            force_list = [-60, -50]
-            f_list = [55, 50]
+            force_list = [-70, -60]
+            f_list = [50, 50]
             print("뚜껑 누르기 : ", [i])
             if i == 1 :
                 # 그리퍼 90도 회전
@@ -230,12 +236,12 @@ class IntegratedSystem:
             print("순응 제어 설정 완료")    
             
             down_grip_control = len(BOTTLE_TARGETS_GOS)
-            little_down = posx([0,0,down_grip_control*15-80,0,0,0])
+            little_down = posx([0,0,down_grip_control*15-75,0,0,0])
             movel(little_down, vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)  # 아래로 약간 하강
             print('힘 제어 시작')
             set_desired_force([0, 0, force_list[i], 0, 0, 0], [0, 0, 5, 0, 0, 0], mod=DR_FC_MOD_REL)
             while True:
-                obj_ok = check_force_condition(DR_AXIS_Z, min=f_list[i], max=100) 
+                obj_ok = check_force_condition(DR_AXIS_Z, min=f_list[i], max=150) 
                 if not obj_ok:  # 힘 감지 (뚜껑 눌림)
                         # tp_log("뚜껑 누르기 완료")
                         print(obj_ok)
@@ -298,10 +304,10 @@ class IntegratedSystem:
             # else:
             #     slip_count = 0  # 조건 불만족 시 리셋
 
-            if is_done_bolt_tightening(m=0.5, timeout=5, axis=DR_AXIS_Z):
+            if is_done_bolt_tightening(m=0.7, timeout=5, axis=DR_AXIS_Z):
                 slip_count += 1
                 print(f"[볼트체결 감지] ({slip_count}/{SLIP_THRESHOLD})")
-                if slip_count >= SLIP_THRESHOLD and spin_count > 8:
+                if slip_count >= SLIP_THRESHOLD and spin_count > 12:
                     print('뚜껑 조이기 완료 (볼트체결 감지)')
                     break
             else:
@@ -349,12 +355,12 @@ class IntegratedSystem:
         wait(6)
         movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
 
-        # j6 초기화 
-        curr_j = get_current_posj()
-        print(curr_j)
-        curr_j[5] = -180.0
-        movej(curr_j, vel=VELJ, acc=ACCJ) # 캡핑하면서 돌아간 줄 풀기
-        print('돌아간 줄 뽑기 끝')
+        # # j6 초기화 
+        # curr_j = get_current_posj()
+        # print(curr_j)
+        # curr_j[5] = -180.0
+        # movej(curr_j, vel=VELJ, acc=ACCJ) # 캡핑하면서 돌아간 줄 풀기
+        # print('돌아간 줄 뽑기 끝')
 
         # 2. Shaking
         def get_safe_joint(base_j, offsets):
@@ -368,13 +374,12 @@ class IntegratedSystem:
                 safe_target.append(target_val)
             return safe_target
         
-        # movel(posx([0,0,100,0,0,0]), vel=100, acc=100, mod=DR_MV_MOD_REL)
-        start_j = get_current_posj()
 
-    
         # movel(posx([505.31, 43.97, 340.04, 114.58, -179.02, 115.44]), vel=VEL_SHAKE, acc=ACC_SHAKE)  # 쉐이킹 시작 위치로 이동 -> 필요없음
         movej(J_SHAKE_START, vel=VELJ, acc=ACCJ)
         print("쉐이킹 시작 위치 도달")
+        # movel(posx([0,0,100,0,0,0]), vel=100, acc=100, mod=DR_MV_MOD_REL)
+        start_j = get_current_posj()    
         
         for i in range(ITERATION):
             print(f"{i+1}번째 쉐이킹 동작 실행 중...")
@@ -387,14 +392,17 @@ class IntegratedSystem:
             offsets_down = [0, 0, AMP_J3, AMP_J4, AMP_J5, AMP_J6]
             target_down = get_safe_joint(start_j, offsets_down)
 
-            # 마지막 루프 여부에 따른 블렌딩 반경 설정
-            is_last = (i == ITERATION - 1)
-            r_val = 0 if is_last else 15
+            # # 마지막 루프 여부에 따른 블렌딩 반경 설정
+            # is_last = (i == ITERATION - 1)
+            # r_val = 0 if is_last else 15
 
             # [주의] mod=DR_MV_MOD_REL를 제거했습니다 (이미 절대 좌표 계산됨)
-            # [주의] r=r_val 대신 radius=r_val를 사용했습니다
-            movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=r_val)
-            movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=r_val)
+            # # [주의] r=r_val 대신 radius=r_val를 사용했습니다
+            # movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=r_val)
+            # movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=r_val)
+
+            movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
+            movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
 
         print("쉐이킹 동작 완료")
         
@@ -414,7 +422,7 @@ class IntegratedSystem:
         self.initialize()
         for i in range(2):
             base_p = i * 50
-            self.capping_process(i, base_p)
+            # self.capping_process(i, base_p)
             self.shaking_process(i, base_p)
         
         from DSR_ROBOT2 import movej
