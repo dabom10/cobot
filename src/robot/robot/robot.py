@@ -182,7 +182,6 @@ class IntegratedSystem:
         # movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
         # self.grip()
 
-
         # task_compliance_ctrl()
         # set_stiffnessx([100, 100, 50, 100, 100, 100])
         # print("순응 제어 설정 완료")    
@@ -217,17 +216,14 @@ class IntegratedSystem:
             print("뚜껑 누르기 : ", [i])
             if i == 1 :
                 # 그리퍼 90도 회전
-                
                 rot = posj(0,0,0,0,0,90)
                 movej(rot, vel=60, acc=60, mod=DR_MV_MOD_REL)
-                
         
             if i == 0 :
                 self.release()
                 wait(0.3)
                 movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
             self.grip()
-
 
             task_compliance_ctrl()
             set_stiffnessx([100, 100, 50, 100, 100, 100])
@@ -248,7 +244,6 @@ class IntegratedSystem:
                 continue
 
             if not obj_ok: # 검출 됐다면
-                
                 release_force(time=0.0) # 아래로 더이상 내려가지 않게 force 끔  
                 print('힘제어 설정 off')    
                 movel(posx([0,0,70,0,0,0]), vel=60, acc=60, mod=DR_MV_MOD_REL)  # 위로 위치 조정
@@ -291,17 +286,26 @@ class IntegratedSystem:
             print(f"[Torque] Mx={mx:.2f}, My={current_force[4]:.2f}, Mz={current_force[5]:.2f} (Nm)")
 
             # [슬립 감지] Mx가 임계값 초과 시 슬립 카운트 증가
-            if mx > MX_SLIP_VALUE:
+            # if mx > MX_SLIP_VALUE:
+            #     slip_count += 1
+            #     print(f"[슬립 감지] Mx={mx:.2f} > {MX_SLIP_VALUE} ({slip_count}/{SLIP_THRESHOLD})")
+            #     if slip_count >= SLIP_THRESHOLD and spin_count > 5:  # 연속 감지 및 최소 회전 후 종료
+            #         print('뚜껑 조이기 완료 (슬립 감지)')
+            #         break
+            #     elif is_done_bolt_tightening():  # 추가 조건: 볼트 조임 완료 감지 함수
+            #         print('뚜껑 조이기 완료 (볼트 조임 완료 감지)')
+            #         break
+            # else:
+            #     slip_count = 0  # 조건 불만족 시 리셋
+
+            if is_done_bolt_tightening(m=0.5, timeout=5, axis=DR_AXIS_Z):
                 slip_count += 1
-                print(f"[슬립 감지] Mx={mx:.2f} > {MX_SLIP_VALUE} ({slip_count}/{SLIP_THRESHOLD})")
-                if slip_count >= SLIP_THRESHOLD and spin_count > 5:  # 연속 감지 및 최소 회전 후 종료
-                    print('뚜껑 조이기 완료 (슬립 감지)')
-                    break
-                elif is_done_bolt_tightening():  # 추가 조건: 볼트 조임 완료 감지 함수
-                    print('뚜껑 조이기 완료 (볼트 조임 완료 감지)')
+                print(f"[볼트체결 감지] ({slip_count}/{SLIP_THRESHOLD})")
+                if slip_count >= SLIP_THRESHOLD and spin_count > 8:
+                    print('뚜껑 조이기 완료 (볼트체결 감지)')
                     break
             else:
-                slip_count = 0  # 조건 불만족 시 리셋
+                slip_count = 0
 
             print('while 진입')
             current_j = get_current_posj()
@@ -429,7 +433,7 @@ def main(args=None):
 
     if get_tcp() != ROBOT_TCP:
         print(f"엔드이펙터 - Gripper 오류 : {get_tcp()}")
-        # node.destroy_node()
+        node.destroy_node()
         rclpy.shutdown()
 
     print(f"엔드이펙터 - Gripper : {get_tcp()}")
