@@ -23,8 +23,8 @@ VELX_SLOW = [30, 30]
 ACCX_SLOW = [60, 60]
 VELJ = 60
 ACCJ = 60
-VEL_SHAKE = 300
-ACC_SHAKE = 350
+VEL_SHAKE = 150
+ACC_SHAKE = 150
 MOVE_DIST = 40 # 위아래 이동 거리
 SNAP_J5 = 20
 SNAP_J6 = 15
@@ -82,12 +82,12 @@ POS_PICK = [
     [321.10, 8.29, 80.98, 178.85, 179.24, 178.52]
 ]
 POS_PLACE = [
-    [266.1, -386.71, 200.94, 92.46, 162.31, 92.86],
-    [392.69, -381.66, 186.38, 91.56, 162.08, 91.85]
+    [266.1, -386.71, 210.94, 92.46, 162.31, 92.86], # z 10 up
+    [392.69, -381.66, 196.38, 91.56, 162.08, 91.85] # z 10 up
 ]
 POS_AIR = [328, -215, 456, 176, -176, 151] # x: 261.31 -> 300.31로 변경
 J_READY = [0, 0, 90, 0, 90, 0]
-J_MIX_1 = [0, 10, 80,  45,  45,  90]
+J_MIX_1 = [0, 10, 80,  45,  45, 90]
 J_MIX_2 = [0, 10, 80, -45, -45, -90]
 POS_HOME_BEFORE = [317.34, -307.11, 344.5, 125.41, -170.49, 127.82] # 마지막 동작에서 movel -> movej로 디버깅해서 괜찮을 수도 있음
 J_SHAKE_START=[2.98, 17, 63.38, -24.65, 52.10, -180.0]
@@ -350,7 +350,7 @@ class IntegratedSystem:
 
     def shaking_process(self, idx, base_progress):
         """쉐이킹 공정 세부 로직"""
-        from DSR_ROBOT2 import movel, movej, get_current_posj, DR_BASE, DR_TOOL, posx, DR_MV_MOD_REL, wait
+        from DSR_ROBOT2 import movel, movej, get_current_posj, DR_BASE, DR_TOOL, posx, DR_MV_MOD_REL, wait, move_periodic
 
         self.log(f"쉐이킹 공정을 시작합니다.. (사이클 : {idx+1} 회)", base_progress + 30)
         
@@ -364,44 +364,58 @@ class IntegratedSystem:
         wait(6)
         movel(posx([0,0,100,0,0,0]), vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
 
-        # # j6 초기화 
-        # curr_j = get_current_posj()
-        # print(curr_j)
-        # curr_j[5] = -180.0
-        # movej(curr_j, vel=VELJ, acc=ACCJ) # 캡핑하면서 돌아간 줄 풀기
-        # print('돌아간 줄 뽑기 끝')
+        # j6 초기화 
+        curr_j = get_current_posj()
+        print(curr_j)
+        curr_j[5] = -180.0
+        movej(curr_j, vel=VELJ, acc=ACCJ) # 캡핑하면서 돌아간 줄 풀기
+        print('돌아간 줄 뽑기 끝')
 
         # 2. Shaking
-        def get_safe_joint(base_j, offsets):
-            """현재 각도에 오프셋을 더한 뒤 한계치 넘지 않도록 보정"""
-            safe_target = []
-            for i in range(6):
-                target_val = base_j[i] + offsets[i]
-                min_limit, max_limit = joint_limits[i]
-                if target_val < min_limit: target_val = min_limit
-                if target_val > max_limit: target_val = max_limit
-                safe_target.append(target_val)
-            return safe_target
+
+        J_SHAKE = [0, 0, 90, 0, 0, -180]
+        J_SHAKE_2 = [0, 0, 90, 0, 0, -180]
+
+        for _ in range(4):
+            movej(J_SHAKE, vel=VEL_SHAKE, acc=ACC_SHAKE)
+            movej(J_SHAKE_2, vel=VEL_SHAKE, acc=ACC_SHAKE)
+        # # def get_safe_joint(base_j, offsets):
+        # for _ in range(2):
+        #     # movej(J_READY, vel=60, acc=ACC_SHAKE) # 갑자기 슉 가는 부분(해결함)
+        #     movej(J_MIX_1, vel=VEL_SHAKE, acc=ACC_SHAKE)
+        #     movej(J_MIX_2, vel=VEL_SHAKE, acc=ACC_SHAKE)
+        #     movej(J_READY, vel=VEL_SHAKE, acc=ACC_SHAKE)
+        #     move_periodic(amp=[0,0,40,0,0,120], period=0.4, repeat=1, ref=DR_BASE)
+        #     move_periodic(amp=[0,0,0,40,40,0], period=0.35, repeat=1, ref=DR_TOOL)
+        #     """현재 각도에 오프셋을 더한 뒤 한계치 넘지 않도록 보정"""
+        #     safe_target = []
+        #     for i in range(6):
+        #         target_val = base_j[i] + offsets[i]
+        #         min_limit, max_limit = joint_limits[i]
+        #         if target_val < min_limit: target_val = min_limit
+        #         if target_val > max_limit: target_val = max_limit
+        #         safe_target.append(target_val)
+        #     return safe_target
         
 
-        # movel(posx([505.31, 43.97, 340.04, 114.58, -179.02, 115.44]), vel=VEL_SHAKE, acc=ACC_SHAKE)  # 쉐이킹 시작 위치로 이동 -> 필요없음
-        movej(J_SHAKE_START, vel=VELJ, acc=ACCJ)
-        print("쉐이킹 시작 위치 도달")
-        # movel(posx([0,0,100,0,0,0]), vel=100, acc=100, mod=DR_MV_MOD_REL)
-        start_j_normal = get_current_posj()    
+        # # movel(posx([505.31, 43.97, 340.04, 114.58, -179.02, 115.44]), vel=VEL_SHAKE, acc=ACC_SHAKE)  # 쉐이킹 시작 위치로 이동 -> 필요없음
+        # movej(J_SHAKE_START, vel=VELJ, acc=ACCJ)
+        # print("쉐이킹 시작 위치 도달")
+        # # movel(posx([0,0,100,0,0,0]), vel=100, acc=100, mod=DR_MV_MOD_REL)
+        # start_j_normal = get_current_posj()    
         
-        for i in range(ITERATION):
-            print(f"기본 쉐이킹 동작 시작...")
+        # for i in range(ITERATION):
+        #     print(f"기본 쉐이킹 동작 시작...")
 
-            # shake 1) 위로 이동 오프셋 
-            offsets_up = [0, 0, -AMP_J3, -AMP_J4, -AMP_J5, -AMP_J6]
-            target_up = get_safe_joint(start_j_normal, offsets_up)
-            # shake 2) 아래로 이동 오프셋
-            offsets_down = [0, 0, AMP_J3, AMP_J4, AMP_J5, AMP_J6]
-            target_down = get_safe_joint(start_j_normal, offsets_down)
+        #     # shake 1) 위로 이동 오프셋 
+        #     offsets_up = [0, 0, -AMP_J3, -AMP_J4, -AMP_J5, -AMP_J6]
+        #     target_up = get_safe_joint(start_j_normal, offsets_up)
+        #     # shake 2) 아래로 이동 오프셋
+        #     offsets_down = [0, 0, AMP_J3, AMP_J4, AMP_J5, AMP_J6]
+        #     target_down = get_safe_joint(start_j_normal, offsets_down)
 
-            movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
-            movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
+        #     movej(target_up, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
+        #     movej(target_down, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=5)
 
         # ## --- [모션 2: 가로(좌우 비틀기) 쉐이킹] ---
         # # J4를 90도 돌리지 않고, 현재 상태에서 J4와 J6만 교차로 흔듭니다.
@@ -450,10 +464,10 @@ def main(args=None):
     DR_init.__dsr__model = ROBOT_MODEL #[305.31, -343.97, 390.04, 114.58, -179.02, 115.44]
     from DSR_ROBOT2 import release_force, get_tcp, release_compliance_ctrl
 
-    # if get_tcp() != ROBOT_TCP:
-    #     print(f"엔드이펙터 - Gripper 오류: {get_tcp()} != {ROBOT_TCP}")
-    #     node.destroy_node()
-    #     rclpy.shutdown()
+    if get_tcp() != ROBOT_TCP:
+        print(f"엔드이펙터 - Gripper 오류: {get_tcp()} != {ROBOT_TCP}")
+        node.destroy_node()
+        rclpy.shutdown()
 
     print(f"엔드이펙터 - Gripper : {get_tcp()}")
 
