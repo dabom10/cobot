@@ -8,7 +8,6 @@
 """ 
 
 import time
-import threading
 import rclpy
 from rclpy.node import Node
 import DR_init
@@ -113,14 +112,27 @@ class ShakingRobotNode(Node):
                                  release_compliance_ctrl, release_force, set_robot_mode,
                                  ROBOT_MODE_AUTONOMOUS)
 
-        # 안전을 위해 이전 공정의 힘 제어 및 설정 초기화
+        self.get_logger().info("로봇 상태 초기화 중...")
+        
+        # 노드 간 제어권 전환 안정화를 위한 짧은 대기
+        wait(1.0)
+        
         try:
-            set_robot_mode(ROBOT_MODE_AUTONOMOUS)
-        except:
-            pass
-        release_force(time=0.0)
-        release_compliance_ctrl()
-        set_tcp(ROBOT_TCP)
+            # 안전을 위해 이전 공정의 힘 제어 및 설정 초기화
+            for i in range(3):
+                try:
+                    set_robot_mode(ROBOT_MODE_AUTONOMOUS)
+                    break
+                except:
+                    wait(0.5)
+            
+            self.get_logger().info("힘 제어 및 TCP 초기화 실행")
+            release_force(time=0.0)
+            release_compliance_ctrl()
+            set_tcp(ROBOT_TCP)
+        except Exception as e:
+            self.get_logger().error(f"로봇 초기화 실패: {e}")
+            return
 
         base_progress = idx * 50
         self.log(f"쉐이킹 공정을 시작합니다.. (사이클 : {idx+1} 회)", base_progress + 30)
@@ -136,6 +148,7 @@ class ShakingRobotNode(Node):
         if curr_j is None: return
         self.get_logger().info(f"현재 관절 위치: {curr_j}")
         curr_j[5] = -180.0
+        self.get_logger().info("J6 관절 꼬임 해제 중...")
         movej(curr_j, vel=VELJ, acc=ACCJ)
         self.get_logger().info("돌아간 줄 뽑기 끝")
 
@@ -144,7 +157,8 @@ class ShakingRobotNode(Node):
         for _ in range(2):
             movej(J_MIX_1, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=20)
             movej(J_MIX_2, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=20)
-            movej(J_READY, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=20)
+            # movej(J_READY, vel=VEL_SHAKE, acc=ACC_SHAKE, radius=20)
+            movej([0,0,90,0,82,0], vel=VEL_SHAKE, acc=ACC_SHAKE, radius=20)
             self.get_logger().info("주기적 흔들림 동작 중...")
             move_periodic(amp=[0,0,40,0,0,120], period=0.4, repeat=1, ref=DR_BASE)
             move_periodic(amp=[0,0,0,40,40,0], period=0.35, repeat=1, ref=DR_TOOL)
@@ -176,22 +190,16 @@ class ShakingRobotNode(Node):
 
     def run(self):
         """메인 실행 함수 - 캡핑 완료 신호 대기"""
-        # 로봇 동작을 별도 스레드에서 실행하여 데드락 방지
-        self.robot_thread = threading.Thread(target=self.robot_loop)
-        self.robot_thread.daemon = True
-        self.robot_thread.start()
+        self.get_logger().info("쉐이킹 노드 실행 루프 시작 - 신호 대기 중")
         
-        self.get_logger().info("쉐이킹 노드 스피닝 시작")
-        rclpy.spin(self)
-
-    def robot_loop(self):
-        """로봇 동작 제어 루프 (별도 스레드)"""
-        self.get_logger().info("로봇 제어 루프 시작 - 신호 대기 중")
+        # 이벤트 루프 - 캡핑 완료 신호 대기 및 쉐이킹 실행
         while rclpy.ok():
             if self.trigger_shaking:
                 self.trigger_shaking = False
                 self.run_shaking_cycle()
-            time.sleep(0.1)
+            
+            # 신호 대기 중 메시지 처리를 위해 spin_once 호출
+            rclpy.spin_once(self, timeout_sec=0.1)
 
 
 def main(args=None):

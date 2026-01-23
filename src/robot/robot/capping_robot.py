@@ -8,7 +8,6 @@
 """
  
 import time
-import threading
 import rclpy
 from rclpy.node import Node
 import DR_init
@@ -114,14 +113,27 @@ class CappingRobotNode(Node):
         wait(0.8)
 
     def initialize(self):
-        from DSR_ROBOT2 import set_tool, set_tcp, movej, set_robot_mode, ROBOT_MODE_AUTONOMOUS
-        try:
-            set_robot_mode(ROBOT_MODE_AUTONOMOUS)
-        except:
-            pass
+        from DSR_ROBOT2 import set_tool, set_tcp, movej, set_robot_mode, ROBOT_MODE_AUTONOMOUS, get_tcp, wait, release_force, release_compliance_ctrl
+        
+        self.get_logger().info("로봇 드라이버 연결 및 모드 설정 중...")
+        # 자율 모드 설정 시도 (드라이버 준비 대기 포함 최대 5회 재시도)
+        for i in range(5):
+            try:
+                set_robot_mode(ROBOT_MODE_AUTONOMOUS)
+                release_force(time=0.0)
+                release_compliance_ctrl()
+                break
+            except:
+                self.get_logger().warn(f"로봇 모드 설정 재시도 중... ({i+1}/5)")
+                time.sleep(1.0)
+
         set_tool(ROBOT_TOOL)
         set_tcp(ROBOT_TCP)
+        wait(0.5) # 설정 반영 대기
+        
+        self.get_logger().info("초기 위치(J_READY)로 이동...")
         movej(J_READY, vel=VELJ, acc=ACCJ)
+        self.get_logger().info(f"엔드이펙터 설정 확인 - TCP: {get_tcp()}")
         self.log("캡핑 시스템 준비 완료", 0)
 
     def shaking_done_callback(self, msg):
@@ -204,12 +216,18 @@ class CappingRobotNode(Node):
             self.get_logger().info("힘 제어 시작")
             set_desired_force([0, 0, force_list[i], 0, 0, 0], [0, 0, 5, 0, 0, 0], mod=DR_FC_MOD_REL)
 
+            # 가상 모드 대응: 힘 감지 루프에 타임아웃 및 대기 시간 추가
+            start_wait = time.time()
             while True:
                 obj_ok = check_force_condition(DR_AXIS_Z, min=f_list[i], max=150)
                 if not obj_ok:
                     self.get_logger().info("뚜껑 누르기 감지")
                     break
-                continue
+                
+                if time.time() - start_wait > 2.0: # 2초 이상 감지 안되면 가상 모드로 간주하고 통과
+                    self.get_logger().info("힘 제어 대기 타임아웃 (가상 모드 대응)")
+                    break
+                wait(0.1) # CPU 점유 방지 및 드라이버 통신 허용
 
             if not obj_ok:
                 release_force(time=0.0)
@@ -226,9 +244,12 @@ class CappingRobotNode(Node):
         movej(curr_j, vel=VELJ, acc=ACCJ)
         self.get_logger().info(f"J6 초기화 완료: {J6_START}도")
 
+        # [수정] 이전 단계에서 70mm 상승했으므로, 다시 캡에 닿으려면 최소 -75mm 이상 하강해야 함
         down = posx([0, 0, -94, 0, 0, 0])
         movel(down, vel=VELX, acc=ACCX, mod=DR_MV_MOD_REL)
-        self.get_logger().info(f"누른 후 다운 : {get_current_posx()}")
+        curr_pos, _ = get_current_posx()
+        self.get_logger().info(f"누른 후 다운 위치 : {curr_pos}")
+        
         start_j = get_current_posj()
         start_j6 = start_j[5]
         self.get_logger().info("while 시작")
@@ -304,33 +325,28 @@ class CappingRobotNode(Node):
         movej(POS_AIR, vel=VELJ, acc=ACCJ)
         movel(posx(POS_HOME_BEFORE), vel=VELX, acc=ACCX)
         movej(J_READY, vel=VELJ, acc=ACCJ)
-        self.log("all_process_completed", 100)
+        self.log("모든 공정이 완료되었습니다.", 100)
         self.all_done = True
 
     def run(self):
         """메인 실행 함수"""
-        # 로봇 동작을 별도 스레드에서 실행
-        self.robot_thread = threading.Thread(target=self.robot_loop)
-        self.robot_thread.daemon = True
-        self.robot_thread.start()
-        
-        self.get_logger().info("캡핑 노드 스피닝 시작")
-        rclpy.spin(self)
-
-    def robot_loop(self):
-        """로봇 동작 제어 루프 (별도 스레드)"""
+        self.get_logger().info("캡핑 노드 실행 루프 시작")
         self.initialize()
         self.run_capping_cycle()
 
+        # 이벤트 루프 - 쉐이킹 완료 신호 대기 및 다음 사이클 제어
         while rclpy.ok() and not self.all_done:
             if self.trigger_next_cycle:
                 self.trigger_next_cycle = False
                 self.current_cycle += 1
+                
                 if self.current_cycle < self.total_cycles:
                     self.run_capping_cycle()
                 else:
                     self.finish_all()
-            time.sleep(0.1)
+            
+            # 로봇이 대기 중일 때 메시지 처리를 위해 spin_once 호출
+            rclpy.spin_once(self, timeout_sec=0.1)
 
 
 def main(args=None):
@@ -342,9 +358,7 @@ def main(args=None):
     node = CappingRobotNode()
     DR_init.__dsr__node = node
 
-    from DSR_ROBOT2 import release_force, get_tcp, release_compliance_ctrl
-    print(f"엔드이펙터 - Gripper : {get_tcp()}")
-
+    from DSR_ROBOT2 import release_force, release_compliance_ctrl
     release_force(time=0.0)
     release_compliance_ctrl()
 
