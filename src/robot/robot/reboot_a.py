@@ -703,6 +703,7 @@ class IntegratedSystem:
                         movel(POS_HOME_BEFORE, vel=VELX, acc=ACCX) # 빼고도 구조물에 안걸리는지 확인 필요함->걸려.....^^
                         movej(J_READY, vel=VELJ, acc=ACCJ)                        
                         break
+                    
                 else:
                     print("[종료] 재시작 신호 없음")
                     break
