@@ -5,228 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>두산 M0609 실시간 모니터링</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #3b82f6;
-      --primary-dark: #2563eb;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-300: #d1d5db;
-      --gray-400: #9ca3af;
-      --gray-500: #6b7280;
-      --gray-600: #4b5563;
-      --gray-700: #374151;
-      --gray-800: #1f2937;
-      --gray-900: #111827;
-      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 24px;
-      color: var(--gray-800);
-    }
-
-    .container { max-width: 1600px; margin: 0 auto; }
-
-    /* Header */
-    .header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 20px 28px;
-      margin-bottom: 24px;
-      box-shadow: var(--card-shadow);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .header h1 {
-      font-size: 24px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .header h1::before {
-      content: '';
-      width: 8px;
-      height: 32px;
-      background: linear-gradient(180deg, var(--primary) 0%, #8b5cf6 100%);
-      border-radius: 4px;
-    }
-
-    .header-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: var(--gray-100);
-      border-radius: 20px;
-      font-size: 13px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--success);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-    /* [수정 핵심] Dashboard Grid 레이아웃 비율 조정 */
-    .dashboard {
-      display: grid;
-      /* 로봇상태(1.6) : 관절(1) : TCP(1) : 제어(1) 비율 */
-      grid-template-columns: 1.6fr 1fr 1fr 1fr;
-      gap: 20px;
-    }
-
-    /* 반응형 레이아웃 */
-    @media (max-width: 1400px) {
-      .dashboard { grid-template-columns: 1.2fr 1fr; }
-    }
-    @media (max-width: 850px) {
-      .dashboard { grid-template-columns: 1fr; }
-    }
-
-    /* Card 스타일 */
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: var(--card-shadow);
-      transition: transform 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card:hover { transform: translateY(-2px); box-shadow: var(--card-shadow-hover); }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .card-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gray-500);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .card-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-icon.blue { background: #dbeafe; }
-    .card-icon.green { background: #d1fae5; }
-    .card-icon.purple { background: #ede9fe; }
-    .card-icon.orange { background: #ffedd5; }
-
-    /* 상태 뱃지 및 프로세스 정보 */
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: 800;
-      color: white;
-      background: var(--warning);
-      margin-bottom: 16px;
-    }
-
-    .status-badge.moving { background: var(--success); }
-    .status-badge.emergency { background: var(--danger); animation: emergency-pulse 1s infinite; }
-
-    .process-info { display: flex; gap: 12px; }
-    .process-item {
-      flex: 1;
-      padding: 16px;
-      background: var(--gray-50);
-      border-radius: 12px;
-      text-align: center;
-    }
-    .process-item:first-child { flex: 2; } /* 로봇 상태 텍스트를 더 넓게 */
-
-    .process-label { font-size: 11px; color: var(--gray-400); margin-bottom: 4px; }
-    .process-value { font-size: 16px; font-weight: 700; color: var(--gray-800); word-break: break-all; }
-
-    /* 데이터 그리드 (관절/TCP) */
-    .data-grid { display: grid; gap: 8px; }
-    .data-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 14px;
-      background: var(--gray-50);
-      border-radius: 8px;
-    }
-    .data-label { font-size: 12px; font-weight: 600; color: var(--gray-400); }
-    .data-value { font-size: 16px; font-weight: 700; }
-    .data-unit { font-size: 11px; color: var(--gray-400); margin-left: 2px; }
-
-    /* 제어 영역 */
-    .tool-current {
-      background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
-      padding: 16px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-    }
-    .control-grid { display: flex; flex-direction: column; gap: 10px; }
-    .control-item { display: flex; align-items: center; justify-content: space-between; }
-
-    .btn {
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: none;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      flex: 1;
-      margin-right: 8px;
-    }
-    .btn-success { background: var(--success); }
-    .btn-purple { background: #8b5cf6; }
-    .btn-orange { background: #f97316; }
-
-    .status-text { font-size: 11px; min-width: 70px; text-align: right; color: var(--gray-400); }
-
-    /* 에러 컨테이너 */
-    .error-container {
-      display: none;
-      background: #fee2e2;
-      border: 2px solid var(--danger);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 20px;
-    }
-
-    .footer { text-align: center; margin-top: 24px; color: white; opacity: 0.7; font-size: 12px; }
-  </style>
-
+  <link rel="stylesheet" href="web_ui.css">
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
@@ -318,6 +97,10 @@
         </div>
         <div class="control-grid">
           <div class="control-item">
+            <button id="btn-start-process" class="btn" style="background: #059669;" onclick="executeStartProcess()">공정시작</button>
+            <span id="start-process-status" class="status-text">대기</span>
+          </div>
+          <div class="control-item">
             <button id="btn-move-home-1" class="btn btn-success" onclick="executeMoveHome(1)">Home</button>
             <span id="move-home-status" class="status-text">대기</span>
           </div>
@@ -330,9 +113,14 @@
             <span id="move-line-status" class="status-text">대기</span>
           </div>
           <div class="control-item">
-            <button id="btn-user-cmd" class="btn" style="background: var(--danger);" onclick="executeUserCmd()">Recovery Mode</button>
-            <button id="btn-stop-user-cmd" class="btn" style="background: var(--gray-600); flex: 0 0 80px;" onclick="stopUserCmd()">중지</button>
+            <button id="btn-user-cmd" class="btn" style="background: var(--danger);" onclick="executeUserCmd(0)">Pause</button>
+            <!-- <button id="btn-stop-user-cmd" class="btn" style="background: var(--gray-600); flex: 0 0 auto; padding: 12px 10px; font-size: 12px;" onclick="stopUserCmd(0)">복구모드중지</button> -->
             <span id="user-cmd-status" class="status-text">대기</span>
+          </div>
+          <div class="control-item">
+            <button id="btn-user-cmd-2" class="btn" style="background: #8b5cf6;" onclick="executeUserCmd(1)">Continue</button>
+            <!-- <button id="btn-stop-user-cmd-2" class="btn" style="background: var(--gray-600); flex: 0 0 auto; padding: 12px 10px; font-size: 12px;" onclick="stopUserCmd(1)">재개중지</button> -->
+            <span id="user-cmd-status-2" class="status-text">대기</span>
           </div>
           <!-- <div class="control-item">
             <button id="btn-servo-off" class="btn" style="background: var(--danger);" onclick="executeServoOff()">Servo Off</button>
@@ -346,7 +134,7 @@
   </div>
 
   <script>
-    // Firebase 설정 (기존과 동일)
+    // Firebase 설정
     const firebaseConfig = {
       apiKey: "AIzaSyBoWy1kWi5lwMnRVs2MeOS96udqWhe-MJU",
       authDomain: "rokey-1f8f3.firebaseapp.com",
@@ -522,90 +310,98 @@
         .finally(() => setTimeout(() => document.getElementById('btn-move-line').disabled = false, 1000));
     }
 
-    // Recovery Mode
-    const userCmdRef = database.ref('dsr01/user_cmd');  // 경로 통일
+    // Start Process (공정시작)
+    const startProcessRef = database.ref('robot_command/start_process');
+    startProcessRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data?.status) updateStatus('start-process-status', data.status);
+    });
 
-    userCmdRef.on('value', (snapshot) => {
+    function executeStartProcess() {
+      document.getElementById('btn-start-process').disabled = true;
+      updateStatus('start-process-status', 'pending');
+      startProcessRef.update({ execute: true, status: 'pending' })
+        .finally(() => setTimeout(() => document.getElementById('btn-start-process').disabled = false, 1000));
+    }
+
+    // Recovery Mode
+    const recoveryModeRef = database.ref('robot_command/user_cmd');
+
+    recoveryModeRef.on('value', (snapshot) => {
       const data = snapshot.val();
       if (data?.status) {
         updateStatus('user-cmd-status', data.status);
+        updateStatus('user-cmd-status-2', data.status);
       }
     });
 
-    function executeUserCmd() {
-      console.log('🔵 Recovery Mode 버튼 클릭!');
-    
-    const btnElement = document.getElementById('btn-user-cmd');  // ✅ 올바른 ID
-    if (!btnElement) {
-      console.error('❌ 버튼을 찾을 수 없습니다!');
-      return;
-    }
-    
-    btnElement.disabled = true;  // ✅ 올바른 ID 사용
-    updateStatus('user-cmd-status', 'pending');
-    const updateData = { execute: true, action: 0, status: 'pending' };
-    console.log('🔵 Firebase 업데이트 시도:', updateData);
-    userCmdRef.update(updateData)
-      .then(() => {
-        console.log('✅ Firebase 업데이트 성공!');
-        return userCmdRef.get();
-      })
-      .then((snapshot) => {
-        console.log('✅ Firebase에 저장된 값:', snapshot.val());
-      })
-      .catch((error) => {
-        console.error('❌ Firebase 업데이트 실패:', error);
-        console.error('❌ 에러 상세:', error.code, error.message);
-      })
-      .finally(() => {
-        setTimeout(() => {
-          btnElement.disabled = false;  // ✅ 올바른 ID 사용
-          console.log('🔵 버튼 다시 활성화');
-        }, 1000);
-      });
-    }
-    
-    function stopUserCmd() {
-      console.log('🛑 Recovery Mode 중지 버튼 클릭!');
-      const btnElement = document.getElementById('btn-stop-user-cmd');
-      if (btnElement) {
-        btnElement.disabled = true;
-    }
-      updateStatus('user-cmd-status', '중지중...');
-      userCmdRef.update({ 
-        stop: true,
-        status: 'stop_requested'
-    })
+    function executeUserCmd(action = 0) {
+      const isRecovery = action === 0;
+      const btnId = isRecovery ? 'btn-user-cmd' : 'btn-user-cmd-2';
+      const statusId = isRecovery ? 'user-cmd-status' : 'user-cmd-status-2';
+      const label = isRecovery ? 'Recovery Mode' : 'Continue';
+      const emoji = isRecovery ? '🔵' : '🟣';
+
+      console.log(`${emoji} ${label} 버튼 클릭!`);
+
+      const btnElement = document.getElementById(btnId);
+      if (!btnElement) {
+        console.error('❌ 버튼을 찾을 수 없습니다!');
+        return;
+      }
+
+      btnElement.disabled = true;
+      updateStatus(statusId, 'pending');
+      const updateData = { execute: true, action: action, status: 'pending' };
+      console.log(`${emoji} Firebase 업데이트 시도:`, updateData);
+      recoveryModeRef.update(updateData)
         .then(() => {
-          console.log('✅ 중지 명령 전송 완료');
-      })
+          console.log('✅ Firebase 업데이트 성공!');
+          return recoveryModeRef.get();
+        })
+        .then((snapshot) => {
+          console.log('✅ Firebase에 저장된 값:', snapshot.val());
+        })
         .catch((error) => {
-          console.error('❌ 중지 명령 실패:', error);
-      })
+          console.error('❌ Firebase 업데이트 실패:', error);
+          console.error('❌ 에러 상세:', error.code, error.message);
+        })
         .finally(() => {
           setTimeout(() => {
-        if (btnElement) {
+            btnElement.disabled = false;
+            console.log(`${emoji} 버튼 다시 활성화`);
+          }, 1000);
+        });
+    }
+
+    function stopUserCmd(stopAction) {
+      console.log(`🛑 Recovery Mode 중지 버튼 클릭! (action: ${stopAction})`);
+      const btnId = stopAction === 0 ? 'btn-stop-user-cmd' : 'btn-stop-user-cmd-2';
+      const statusId = stopAction === 0 ? 'user-cmd-status' : 'user-cmd-status-2';
+      const btnElement = document.getElementById(btnId);
+      if (btnElement) {
+        btnElement.disabled = true;
+      }
+      updateStatus(statusId, '중지중...');
+      recoveryModeRef.update({
+        stop: true,
+        stop_action: stopAction,
+        status: 'stop_requested'
+      })
+        .then(() => {
+          console.log(`✅ 중지 명령 전송 완료 (action: ${stopAction})`);
+        })
+        .catch((error) => {
+          console.error('❌ 중지 명령 실패:', error);
+        })
+        .finally(() => {
+          setTimeout(() => {
+            if (btnElement) {
               btnElement.disabled = false;
             }
           }, 1000);
         });
-  }
-      
-
-    // // Servo Off
-    // const servoOffRef = database.ref('robot_command/servo_off');
-    // servoOffRef.on('value', (snapshot) => {
-    //   const data = snapshot.val();
-    //   if (data?.status) updateStatus('servo-off-status', data.status);
-    // });
-
-    // function executeServoOff() {
-    //   if (!confirm('정말 Servo Off를 실행하시겠습니까?')) return;
-    //   document.getElementById('btn-servo-off').disabled = true;
-    //   updateStatus('servo-off-status', 'pending');
-    //   servoOffRef.update({ execute: true, status: 'pending' })
-    //     .finally(() => setTimeout(() => document.getElementById('btn-servo-off').disabled = false, 1000));
-    // }
+    }
 
     // 상태 업데이트 헬퍼
     function updateStatus(id, status) {

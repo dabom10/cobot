@@ -104,5 +104,13 @@ def generate_launch_description():
             executable='firebase_periodic_publisher',
             name='firebase_periodic_publisher',
             output='screen',
-        )
+        ),
+
+        # Start Process Node - 공정시작 명령 수신하여 ros2 run robot reboot_a_v2 실행
+        Node(
+            package='web_ui',
+            executable='start_process',
+            name='start_process',
+            output='screen',
+        ),
     ])
