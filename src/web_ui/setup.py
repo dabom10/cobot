@@ -42,6 +42,8 @@ setup(
             'servo_off = web_ui.servo_off_node:main',
             'robot_mode = web_ui.robot_mode_node:main',
             'set_robot_mode = web_ui.set_robot_mode_node:main',
+            'recovery_mode = web_ui.recovery_mode_node:main',
+            'firebase_periodic_publisher = web_ui.firebase_periodic_publisher:main',
         ],
     },
 )

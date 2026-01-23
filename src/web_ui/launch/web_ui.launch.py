@@ -76,11 +76,11 @@ def generate_launch_description():
             output='screen',
         ),
 
-        # Servo Off Node - Firebase에서 명령 수신하여 서보 오프 실행
+        # recovery_mode Node - Firebase에서 명령 수신하여 서보 오프 실행
         Node(
             package='web_ui',
-            executable='servo_off',
-            name='servo_off',
+            executable='recovery_mode',
+            name='recovery_mode',
             output='screen',
         ),
 
@@ -99,4 +99,10 @@ def generate_launch_description():
             name='set_robot_mode',
             output='screen',
         ),
+        Node(
+            package='web_ui',
+            executable='firebase_periodic_publisher',
+            name='firebase_periodic_publisher',
+            output='screen',
+        )
     ])

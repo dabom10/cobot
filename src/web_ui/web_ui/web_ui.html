@@ -295,6 +295,7 @@
         <div class="card-header">
           <span class="card-title">TCP 위치</span>
           <div class="card-icon purple">📍</div>
+          
         </div>
         <div class="data-grid">
           <div class="data-row"><span class="data-label">X</span><div><span class="data-value" id="tcp_x">-</span><span class="data-unit">mm</span></div></div>
@@ -329,8 +330,13 @@
             <span id="move-line-status" class="status-text">대기</span>
           </div>
           <div class="control-item">
+            <button id="btn-user-cmd" class="btn" style="background: var(--danger);" onclick="executeUserCmd()">Recovery Mode</button>
+            <button id="btn-stop-user-cmd" class="btn" style="background: var(--gray-600); flex: 0 0 80px;" onclick="stopUserCmd()">중지</button>
+            <span id="user-cmd-status" class="status-text">대기</span>
+          </div>
+          <!-- <div class="control-item">
             <button id="btn-servo-off" class="btn" style="background: var(--danger);" onclick="executeServoOff()">Servo Off</button>
-            <span id="servo-off-status" class="status-text">대기</span>
+            <span id="servo-off-status" class="status-text">대기</span> -->
           </div>
         </div>
       </div>
@@ -516,20 +522,90 @@
         .finally(() => setTimeout(() => document.getElementById('btn-move-line').disabled = false, 1000));
     }
 
-    // Servo Off
-    const servoOffRef = database.ref('robot_command/servo_off');
-    servoOffRef.on('value', (snapshot) => {
+    // Recovery Mode
+    const userCmdRef = database.ref('dsr01/user_cmd');  // 경로 통일
+
+    userCmdRef.on('value', (snapshot) => {
       const data = snapshot.val();
-      if (data?.status) updateStatus('servo-off-status', data.status);
+      if (data?.status) {
+        updateStatus('user-cmd-status', data.status);
+      }
     });
 
-    function executeServoOff() {
-      if (!confirm('정말 Servo Off를 실행하시겠습니까?')) return;
-      document.getElementById('btn-servo-off').disabled = true;
-      updateStatus('servo-off-status', 'pending');
-      servoOffRef.update({ execute: true, status: 'pending' })
-        .finally(() => setTimeout(() => document.getElementById('btn-servo-off').disabled = false, 1000));
+    function executeUserCmd() {
+      console.log('🔵 Recovery Mode 버튼 클릭!');
+    
+    const btnElement = document.getElementById('btn-user-cmd');  // ✅ 올바른 ID
+    if (!btnElement) {
+      console.error('❌ 버튼을 찾을 수 없습니다!');
+      return;
     }
+    
+    btnElement.disabled = true;  // ✅ 올바른 ID 사용
+    updateStatus('user-cmd-status', 'pending');
+    const updateData = { execute: true, action: 0, status: 'pending' };
+    console.log('🔵 Firebase 업데이트 시도:', updateData);
+    userCmdRef.update(updateData)
+      .then(() => {
+        console.log('✅ Firebase 업데이트 성공!');
+        return userCmdRef.get();
+      })
+      .then((snapshot) => {
+        console.log('✅ Firebase에 저장된 값:', snapshot.val());
+      })
+      .catch((error) => {
+        console.error('❌ Firebase 업데이트 실패:', error);
+        console.error('❌ 에러 상세:', error.code, error.message);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          btnElement.disabled = false;  // ✅ 올바른 ID 사용
+          console.log('🔵 버튼 다시 활성화');
+        }, 1000);
+      });
+    }
+    
+    function stopUserCmd() {
+      console.log('🛑 Recovery Mode 중지 버튼 클릭!');
+      const btnElement = document.getElementById('btn-stop-user-cmd');
+      if (btnElement) {
+        btnElement.disabled = true;
+    }
+      updateStatus('user-cmd-status', '중지중...');
+      userCmdRef.update({ 
+        stop: true,
+        status: 'stop_requested'
+    })
+        .then(() => {
+          console.log('✅ 중지 명령 전송 완료');
+      })
+        .catch((error) => {
+          console.error('❌ 중지 명령 실패:', error);
+      })
+        .finally(() => {
+          setTimeout(() => {
+        if (btnElement) {
+              btnElement.disabled = false;
+            }
+          }, 1000);
+        });
+  }
+      
+
+    // // Servo Off
+    // const servoOffRef = database.ref('robot_command/servo_off');
+    // servoOffRef.on('value', (snapshot) => {
+    //   const data = snapshot.val();
+    //   if (data?.status) updateStatus('servo-off-status', data.status);
+    // });
+
+    // function executeServoOff() {
+    //   if (!confirm('정말 Servo Off를 실행하시겠습니까?')) return;
+    //   document.getElementById('btn-servo-off').disabled = true;
+    //   updateStatus('servo-off-status', 'pending');
+    //   servoOffRef.update({ execute: true, status: 'pending' })
+    //     .finally(() => setTimeout(() => document.getElementById('btn-servo-off').disabled = false, 1000));
+    // }
 
     // 상태 업데이트 헬퍼
     function updateStatus(id, status) {
