@@ -61,6 +61,7 @@ CAP_POSITIONS = [
 
 # 에러 위치 (4번 단계에서 집을 위치)
 ERROR_POSITION = [318.21, 247.01, 58.5, 29.08, 180, 29.02]
+POS_HOME_BEFORE = [317.34, -307.11, 344.5, 125.41, -170.49, 127.82]
 
 POS_PLACE = [
     [266.1, -386.71, 210.94, 92.46, 162.31, 92.86],   # z 10 up
@@ -652,7 +653,7 @@ class IntegratedSystem:
 
     def run(self):
         """상태 머신 기반 실행"""
-        from DSR_ROBOT2 import movej
+        from DSR_ROBOT2 import movej,movel
 
         self.initialize()
         current_step = 1
@@ -697,6 +698,10 @@ class IntegratedSystem:
                         current_step = 5
                     else:  # 5, 6, 7
                         print("[종료] 프로그램 종료")
+                        from DSR_ROBOT2 import movej
+                        movej(POS_AIR, vel=VELJ, acc=ACCJ)
+                        movel(POS_HOME_BEFORE, vel=VELX, acc=ACCX) # 빼고도 구조물에 안걸리는지 확인 필요함->걸려.....^^
+                        movej(J_READY, vel=VELJ, acc=ACCJ)                        
                         break
                 else:
                     print("[종료] 재시작 신호 없음")
