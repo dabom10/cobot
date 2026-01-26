@@ -22,8 +22,6 @@
 cobot/
 ├── src/
 │ ├── robot/ # 메인 로봇 제어 (ROS2 Node)
-│ ├── capping/ # 자동 캡핑 공정 로직
-│ ├── shaking/ # 쉐이킹 공정 제어
 │ └── web_ui/ # UI + Firebase 연동
 └── README.md
 ```
@@ -35,16 +33,12 @@ cobot/
 |--------|--------|
 | `robot` | `rclpy`, `std_msgs`, `sensor_msgs`, `launch`, `launch_ros` |
 | `web_ui` | `rclpy`, `std_msgs`, `sensor_msgs`, `dsr_msgs2`, `ros2launch` |
-| `capping` | - |
-| `shaking` | - |
 
 ### Python 외부 패키지
 
 | 패키지 | 용도 |
 |--------|------|
 | `firebase_admin` | Firebase 실시간 DB 연동 (web_ui) |
-| `setuptools` | 패키지 빌드 |
-| `pytest` | 테스트 |
 
 ### 두산 로봇 관련
 
@@ -58,18 +52,12 @@ cobot/
 
 `time`, `threading`, `math`, `os`, `subprocess`, `glob`
 
-## 설치 방법
-
+## 사용 설명
+### 빌드
 ```bash
 # firebase 패키지
 pip install firebase-admin
 ```
-
----
-
-## 사용 설명
-
-### 빌드
 
 ```bash
 cd ~/cobot
